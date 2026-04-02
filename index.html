@@ -251,13 +251,13 @@
 
     /* ── S6: INDUSTRY ── */
     .co-grid {
-      display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 16px; max-width: 920px; width: 100%;
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 14px; max-width: 980px; width: 100%;
     }
     .co-card {
       background: rgba(255,255,255,0.025);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 24px 18px 20px; border-radius: 2px; text-align: center;
+      padding: 18px 14px 16px; border-radius: 2px; text-align: center;
       position: relative; overflow: hidden;
       display: flex; flex-direction: column; align-items: center; gap: 10px;
       transition: background 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
@@ -269,23 +269,21 @@
     }
     .co-card:hover {
       background: rgba(37,144,240,0.1); border-color: rgba(37,144,240,0.38);
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
     .co-card:hover::after { transform: scaleX(1); }
     .co-logo {
-      height: 38px;
+      width: 100%; height: 40px;
       display: flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,0.93);
+      border-radius: 4px; padding: 4px 10px;
     }
     .co-logo img {
-      max-height: 38px; max-width: 110px;
+      max-height: 32px; max-width: 110px;
       object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.82;
-      transition: opacity 0.2s;
     }
-    .co-card:hover .co-logo img { opacity: 1; }
     .co-name {
-      font-family: var(--fc); font-size: 16px; font-weight: 700;
+      font-family: var(--fc); font-size: 13px; font-weight: 700;
       letter-spacing: 0.5px; color: var(--dim); line-height: 1.25;
     }
 
@@ -337,8 +335,10 @@
       .hl-stat { font-size: 22px; min-width: 110px; padding: 12px 16px; }
       .hl-desc { font-size: 13px; padding: 12px 16px; }
 
-      .co-grid { grid-template-columns: repeat(3,1fr); gap: 14px; }
-      .co-name { font-size: 17px; }
+      .co-grid { grid-template-columns: repeat(3,1fr); gap: 12px; }
+      .co-name { font-size: 12px; }
+      .co-logo { height: 34px; }
+      .co-logo img { max-height: 26px; }
 
       .team-grid { grid-template-columns: repeat(4,1fr); gap: 16px; }
       .avatar { width: 110px; height: 110px; }
@@ -378,9 +378,11 @@
       .stat-n { font-size: clamp(40px,12vw,64px); }
       .stat-l { font-size: 10px; letter-spacing: 2px; }
 
-      .co-grid { grid-template-columns: repeat(2,1fr); gap: 10px; }
-      .co-card { padding: 22px 12px; }
-      .co-name { font-size: 16px; }
+      .co-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
+      .co-card { padding: 14px 8px; }
+      .co-name { font-size: 11px; }
+      .co-logo { height: 30px; padding: 3px 6px; }
+      .co-logo img { max-height: 22px; max-width: 80px; }
 
       .team-grid { grid-template-columns: repeat(2,1fr); gap: 20px; }
       .avatar { width: 100px; height: 100px; }
@@ -551,12 +553,12 @@
         <div class="stat-l">Active Students</div>
       </div>
       <div class="stat">
-        <div class="stat-n">10+</div>
-        <div class="stat-l">Sessions / Cycle</div>
-      </div>
-      <div class="stat">
         <div class="stat-n">100+</div>
         <div class="stat-l">Community Members</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">10+</div>
+        <div class="stat-l">Sessions / Cycle</div>
       </div>
       <div class="stat">
         <div class="stat-n">2×</div>
@@ -574,40 +576,48 @@
     </div>
     <div class="co-grid">
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/wsc-sports.com" alt="WSC Sports"></div>
+        <div class="co-logo"><img src="download.png" alt="WSC Sports"></div>
         <p class="co-name">WSC Sports</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/365scores.com" alt="365Scores"></div>
+        <div class="co-logo"><img src="365Scores-300x300-Logo-NEW-1.png" alt="365Scores"></div>
         <p class="co-name">365Scores</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/pixellot.tv" alt="Pixellot"></div>
+        <div class="co-logo"><img src="download (3).png" alt="Pixellot"></div>
         <p class="co-name">Pixellot</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/playermaker.com" alt="PlayerMaker"></div>
+        <div class="co-logo"><img src="download.jpeg" alt="PlayerMaker"></div>
         <p class="co-name">PlayerMaker</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/liveu.tv" alt="LiveU"></div>
+        <div class="co-logo"><img src="download (2).png" alt="LiveU"></div>
         <p class="co-name">LiveU</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/welltechventures.com" alt="Welltech Ventures"></div>
+        <div class="co-logo"><img src="download (1).png" alt="Welltech Ventures"></div>
         <p class="co-name">Welltech Ventures</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/meetreflect.com" alt="Reflect"></div>
+        <div class="co-logo"><img src="download (5).png" alt="Reflect"></div>
         <p class="co-name">Reflect</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/colosseumsport.com" alt="Colosseum"></div>
+        <div class="co-logo"><img src="download (6).png" alt="Colosseum"></div>
         <p class="co-name">Colosseum</p>
       </div>
       <div class="co-card anim">
-        <div class="co-logo"><img src="https://logo.clearbit.com/sylvanadamsports-tau.org.il" alt="Sylvan Adams Institute" onerror="this.style.display='none'"></div>
-        <p class="co-name">Sylvan Adams Sports Science Institute</p>
+        <div class="co-logo"><img src="download (7).png" alt="Sylvan Adams Institute"></div>
+        <p class="co-name">Sylvan Adams Sport Science Institute</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="download (4).png" alt="Playsight"></div>
+        <p class="co-name">Playsight</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="IMG_4621.jpg" alt="OneScrin"></div>
+        <p class="co-name">OneScrin</p>
       </div>
     </div>
   </div>
@@ -621,8 +631,8 @@
     </div>
     <div class="team-grid">
       <div class="member anim">
-        <div class="avatar"><img src="photo_2.png" alt="Ben Meiri"></div>
-        <p class="m-name">Ben Meiri</p>
+        <div class="avatar"><img src="IMG_3706 2.PNG" alt="Yoad Yankowitz"></div>
+        <p class="m-name">Yoad Yankowitz</p>
       </div>
       <div class="member anim">
         <div class="avatar"><img src="photo_3.png" alt="Carmel Helman"></div>
@@ -633,8 +643,8 @@
         <p class="m-name">Maya Prashker</p>
       </div>
       <div class="member anim">
-        <div class="avatar"><img src="IMG_3706 2.PNG" alt="Yoad Yankowitz"></div>
-        <p class="m-name">Yoad Yankowitz</p>
+        <div class="avatar"><img src="photo_2.png" alt="Ben Meiri"></div>
+        <p class="m-name">Ben Meiri</p>
       </div>
     </div>
   </div>
