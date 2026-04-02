@@ -252,13 +252,14 @@
     /* ── S6: INDUSTRY ── */
     .co-grid {
       display: grid; grid-template-columns: repeat(3,1fr);
-      gap: 18px; max-width: 830px; width: 100%;
+      gap: 16px; max-width: 920px; width: 100%;
     }
     .co-card {
       background: rgba(255,255,255,0.025);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 34px 22px; border-radius: 2px; text-align: center;
+      padding: 24px 18px 20px; border-radius: 2px; text-align: center;
       position: relative; overflow: hidden;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
       transition: background 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
     }
     .co-card::after {
@@ -268,12 +269,24 @@
     }
     .co-card:hover {
       background: rgba(37,144,240,0.1); border-color: rgba(37,144,240,0.38);
-      transform: translateY(-6px);
+      transform: translateY(-5px);
     }
     .co-card:hover::after { transform: scaleX(1); }
+    .co-logo {
+      height: 38px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .co-logo img {
+      max-height: 38px; max-width: 110px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      opacity: 0.82;
+      transition: opacity 0.2s;
+    }
+    .co-card:hover .co-logo img { opacity: 1; }
     .co-name {
-      font-family: var(--fc); font-size: 21px; font-weight: 700;
-      letter-spacing: 1px; color: var(--white);
+      font-family: var(--fc); font-size: 16px; font-weight: 700;
+      letter-spacing: 0.5px; color: var(--dim); line-height: 1.25;
     }
 
     /* ── S7: TEAM ── */
@@ -485,8 +498,8 @@
       <div class="obj-card anim">
         <span class="obj-num">04</span>
         <div>
-          <p class="obj-kw">Talent Pipeline</p>
-          <p class="obj-sub">Next-Gen Entrepreneurs &amp; Professionals</p>
+          <p class="obj-kw">Development</p>
+          <p class="obj-sub">Growing the Next Generation of Professionals</p>
         </div>
       </div>
     </div>
@@ -509,8 +522,8 @@
         <p class="hl-desc">Professional Industry Sessions / Cycle</p>
       </div>
       <div class="hl-row anim">
-        <div class="hl-stat">C-Suite</div>
-        <p class="hl-desc">Guest Lectures — Founders, Executives &amp; Pros</p>
+        <div class="hl-stat">Speakers</div>
+        <p class="hl-desc">Guest Lectures — Founders, Executives &amp; Industry Leaders</p>
       </div>
       <div class="hl-row anim">
         <div class="hl-stat">Flagship</div>
@@ -542,6 +555,10 @@
         <div class="stat-l">Sessions / Cycle</div>
       </div>
       <div class="stat">
+        <div class="stat-n">100+</div>
+        <div class="stat-l">Community Members</div>
+      </div>
+      <div class="stat">
         <div class="stat-n">2×</div>
         <div class="stat-l">Per Academic Year</div>
       </div>
@@ -556,12 +573,42 @@
       <div class="bar"></div>
     </div>
     <div class="co-grid">
-      <div class="co-card anim"><p class="co-name">WSC Sports</p></div>
-      <div class="co-card anim"><p class="co-name">365Scores</p></div>
-      <div class="co-card anim"><p class="co-name">Pixellot</p></div>
-      <div class="co-card anim"><p class="co-name">PlayerMaker</p></div>
-      <div class="co-card anim"><p class="co-name">LiveU</p></div>
-      <div class="co-card anim"><p class="co-name">Welltech Ventures</p></div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/wsc-sports.com" alt="WSC Sports"></div>
+        <p class="co-name">WSC Sports</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/365scores.com" alt="365Scores"></div>
+        <p class="co-name">365Scores</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/pixellot.tv" alt="Pixellot"></div>
+        <p class="co-name">Pixellot</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/playermaker.com" alt="PlayerMaker"></div>
+        <p class="co-name">PlayerMaker</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/liveu.tv" alt="LiveU"></div>
+        <p class="co-name">LiveU</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/welltechventures.com" alt="Welltech Ventures"></div>
+        <p class="co-name">Welltech Ventures</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/meetreflect.com" alt="Reflect"></div>
+        <p class="co-name">Reflect</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/colosseumsport.com" alt="Colosseum"></div>
+        <p class="co-name">Colosseum</p>
+      </div>
+      <div class="co-card anim">
+        <div class="co-logo"><img src="https://logo.clearbit.com/sylvanadamsports-tau.org.il" alt="Sylvan Adams Institute" onerror="this.style.display='none'"></div>
+        <p class="co-name">Sylvan Adams Sports Science Institute</p>
+      </div>
     </div>
   </div>
 
@@ -576,22 +623,18 @@
       <div class="member anim">
         <div class="avatar"><img src="photo_2.png" alt="Ben Meiri"></div>
         <p class="m-name">Ben Meiri</p>
-        <p class="m-role">Manager</p>
       </div>
       <div class="member anim">
         <div class="avatar"><img src="photo_3.png" alt="Carmel Helman"></div>
         <p class="m-name">Carmel Helman</p>
-        <p class="m-role">Manager</p>
       </div>
       <div class="member anim">
         <div class="avatar"><img src="photo_4.jpeg" alt="Maya Prashker"></div>
         <p class="m-name">Maya Prashker</p>
-        <p class="m-role">Manager</p>
       </div>
       <div class="member anim">
-        <div class="avatar"><img src="photo_5.png" alt="Yoad Yankowitz"></div>
+        <div class="avatar"><img src="IMG_3706 2.PNG" alt="Yoad Yankowitz"></div>
         <p class="m-name">Yoad Yankowitz</p>
-        <p class="m-role">Manager</p>
       </div>
     </div>
   </div>
