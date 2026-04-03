@@ -6,7 +6,7 @@
   <title>Sport Tech & Wellness Tech Club — Reichman University</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Heebo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg:    #05111f;
@@ -21,6 +21,7 @@
       --fd: 'Bebas Neue', sans-serif;
       --fc: 'Barlow Condensed', sans-serif;
       --fb: 'Barlow', sans-serif;
+      --fh: 'Heebo', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -319,6 +320,24 @@
       text-transform: uppercase; color: var(--blue3);
     }
 
+    /* ── LANG TOGGLE ── */
+    .lang-toggle {
+      position: fixed; top: 20px; right: 26px; z-index: 400;
+      display: flex; gap: 0; border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(10px);
+    }
+    .lang-btn {
+      padding: 6px 14px;
+      font-family: var(--fc); font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.45);
+      border: none; cursor: pointer; transition: all 0.2s ease;
+    }
+    .lang-btn.active {
+      background: var(--blue2); color: #fff;
+    }
+    .lang-btn:hover:not(.active) { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+
     /* ── RESPONSIVE ── */
 
     /* Tablet */
@@ -394,6 +413,50 @@
       .nav-dots { bottom: 20px; }
     }
 
+    /* ── HEBREW OVERRIDES ── */
+    html[lang="he"] {
+      direction: rtl;
+    }
+    html[lang="he"] .label,
+    html[lang="he"] #s1 .eyebrow,
+    html[lang="he"] #s1 .tagline,
+    html[lang="he"] .chip,
+    html[lang="he"] .hl-desc,
+    html[lang="he"] .stat-l,
+    html[lang="he"] .obj-sub,
+    html[lang="he"] .co-name,
+    html[lang="he"] .m-name,
+    html[lang="he"] #s5 .comm-sub {
+      font-family: var(--fh);
+      letter-spacing: 0;
+      text-transform: none;
+    }
+    html[lang="he"] .headline,
+    html[lang="he"] #s1 h1,
+    html[lang="he"] #s2 .pitch,
+    html[lang="he"] .obj-kw {
+      font-family: var(--fh);
+      letter-spacing: 0;
+    }
+    html[lang="he"] #s1 h1 {
+      line-height: 1;
+    }
+    html[lang="he"] .obj-card {
+      border-left: none;
+      border-right: 3px solid var(--blue2);
+    }
+    html[lang="he"] .obj-card:hover {
+      border-right-color: var(--cyan);
+      transform: translateX(-5px);
+    }
+    html[lang="he"] .hl-stat {
+      border-right: none;
+      border-left: 1px solid rgba(255,255,255,0.06);
+      font-family: var(--fd);
+    }
+    html[lang="he"] .counter { left: auto; right: 36px; }
+    html[lang="he"] .lang-toggle { right: auto; left: 26px; }
+
     /* ── NAV ── */
     .nav-dots {
       position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
@@ -431,40 +494,47 @@
   </style>
 </head>
 <body>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+  <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" id="btnHE" onclick="setLang('he')">עב</button>
+</div>
+
 <div class="stage">
 
   <!-- S1: HERO -->
   <div class="slide active" id="s1">
     <div class="glow"></div>
     <div class="deco"></div>
-    <p class="eyebrow anim">Reichman University</p>
-    <h1 class="anim">
+    <p class="eyebrow anim" data-i18n="s1_uni">Reichman University</p>
+    <h1 class="anim" data-i18n="s1_h1">
       Sport<br>
       <span class="amp">Tech &amp;</span><br>
       <em>Wellness</em><br>
       Tech Club
     </h1>
     <div class="hero-bar anim"></div>
-    <p class="tagline anim">Where Academia Meets Industry</p>
+    <p class="tagline anim" data-i18n="s1_tagline">Where Academia Meets Industry</p>
   </div>
 
   <!-- S2: ABOUT -->
   <div class="slide" id="s2">
     <div class="card">
       <div class="head-block" style="margin-bottom:0">
-        <p class="label anim">About</p>
+        <p class="label anim" data-i18n="s2_label">About</p>
         <div class="bar anim"></div>
       </div>
-      <p class="pitch anim">
+      <p class="pitch anim" data-i18n="s2_pitch">
         Israel's <em>exclusive</em> student program<br>
         bridging sport-tech talent<br>
         with industry.
       </p>
       <div class="chips anim">
-        <span class="chip">Sport-Tech</span>
-        <span class="chip">Well-Tech</span>
-        <span class="chip">Academia &rarr; Industry</span>
-        <span class="chip">Reichman University</span>
+        <span class="chip" data-i18n="s2_chip1">Sport-Tech</span>
+        <span class="chip" data-i18n="s2_chip2">Well-Tech</span>
+        <span class="chip" data-i18n="s2_chip3">Academia &rarr; Industry</span>
+        <span class="chip" data-i18n="s2_chip4">Reichman University</span>
       </div>
     </div>
   </div>
@@ -472,37 +542,37 @@
   <!-- S3: OBJECTIVES -->
   <div class="slide" id="s3">
     <div class="head-block anim">
-      <p class="label">Objectives</p>
-      <h2 class="headline">What We Stand For</h2>
+      <p class="label" data-i18n="s3_label">Objectives</p>
+      <h2 class="headline" data-i18n="s3_title">What We Stand For</h2>
       <div class="bar"></div>
     </div>
     <div class="obj-grid">
       <div class="obj-card anim">
         <span class="obj-num">01</span>
         <div>
-          <p class="obj-kw">Innovation</p>
-          <p class="obj-sub">Sport-Tech &amp; Well-Tech Entrepreneurship</p>
+          <p class="obj-kw" data-i18n="s3_kw1">Innovation</p>
+          <p class="obj-sub" data-i18n="s3_sub1">Sport-Tech &amp; Well-Tech Entrepreneurship</p>
         </div>
       </div>
       <div class="obj-card anim">
         <span class="obj-num">02</span>
         <div>
-          <p class="obj-kw">Industry Access</p>
-          <p class="obj-sub">Leaders in Israel &amp; Worldwide</p>
+          <p class="obj-kw" data-i18n="s3_kw2">Industry Access</p>
+          <p class="obj-sub" data-i18n="s3_sub2">Leaders in Israel &amp; Worldwide</p>
         </div>
       </div>
       <div class="obj-card anim">
         <span class="obj-num">03</span>
         <div>
-          <p class="obj-kw">Collaboration</p>
-          <p class="obj-sub">Companies, Orgs &amp; Global Events</p>
+          <p class="obj-kw" data-i18n="s3_kw3">Collaboration</p>
+          <p class="obj-sub" data-i18n="s3_sub3">Companies, Orgs &amp; Global Events</p>
         </div>
       </div>
       <div class="obj-card anim">
         <span class="obj-num">04</span>
         <div>
-          <p class="obj-kw">Development</p>
-          <p class="obj-sub">Growing the Next Generation of Professionals</p>
+          <p class="obj-kw" data-i18n="s3_kw4">Development</p>
+          <p class="obj-sub" data-i18n="s3_sub4">Growing the Next Generation of Professionals</p>
         </div>
       </div>
     </div>
@@ -511,59 +581,59 @@
   <!-- S4: HIGHLIGHTS -->
   <div class="slide" id="s4">
     <div class="head-block anim">
-      <p class="label">Program Highlights</p>
-      <h2 class="headline">By the Numbers</h2>
+      <p class="label" data-i18n="s4_label">Program Highlights</p>
+      <h2 class="headline" data-i18n="s4_title">By the Numbers</h2>
       <div class="bar"></div>
     </div>
     <div class="hl-stack">
       <div class="hl-row anim">
         <div class="hl-stat">50</div>
-        <p class="hl-desc">Curated Students per Cohort</p>
+        <p class="hl-desc" data-i18n="s4_desc1">Curated Students per Cohort</p>
       </div>
       <div class="hl-row anim">
         <div class="hl-stat">10+</div>
-        <p class="hl-desc">Professional Industry Sessions / Cycle</p>
+        <p class="hl-desc" data-i18n="s4_desc2">Professional Industry Sessions / Cycle</p>
       </div>
       <div class="hl-row anim">
-        <div class="hl-stat">Speakers</div>
-        <p class="hl-desc">Guest Lectures — Founders, Executives &amp; Industry Leaders</p>
+        <div class="hl-stat" data-i18n="s4_stat3">Speakers</div>
+        <p class="hl-desc" data-i18n="s4_desc3">Guest Lectures — Founders, Executives &amp; Industry Leaders</p>
       </div>
       <div class="hl-row anim">
-        <div class="hl-stat">Flagship</div>
-        <p class="hl-desc">Annual Innovation &amp; Applied Project Event</p>
+        <div class="hl-stat" data-i18n="s4_stat4">Flagship</div>
+        <p class="hl-desc" data-i18n="s4_desc4">Annual Innovation &amp; Applied Project Event</p>
       </div>
       <div class="hl-row anim">
         <div class="hl-stat">2× / Year</div>
-        <p class="hl-desc">Runs Each Semester — Semester A &amp; B</p>
+        <p class="hl-desc" data-i18n="s4_desc5">Runs Each Semester — Semester A &amp; B</p>
       </div>
     </div>
   </div>
 
   <!-- S5: COMMUNITY -->
   <div class="slide" id="s5">
-    <p class="label anim">Our Community</p>
-    <h2 class="headline anim">Scale &amp; Reach</h2>
+    <p class="label anim" data-i18n="s5_label">Our Community</p>
+    <h2 class="headline anim" data-i18n="s5_title">Scale &amp; Reach</h2>
     <div class="bar anim" style="margin: 0 auto;"></div>
-    <p class="comm-sub anim">
+    <p class="comm-sub anim" data-i18n="s5_sub">
       Operating under the Reichman University Student Union —<br>
       thousands of students, all faculties, one ecosystem.
     </p>
     <div class="stats-row anim">
       <div class="stat">
         <div class="stat-n">50+</div>
-        <div class="stat-l">Active Students</div>
+        <div class="stat-l" data-i18n="s5_l1">Active Students</div>
       </div>
       <div class="stat">
         <div class="stat-n">100+</div>
-        <div class="stat-l">Community Members</div>
+        <div class="stat-l" data-i18n="s5_l2">Community Members</div>
       </div>
       <div class="stat">
         <div class="stat-n">10+</div>
-        <div class="stat-l">Sessions / Cycle</div>
+        <div class="stat-l" data-i18n="s5_l3">Sessions / Cycle</div>
       </div>
       <div class="stat">
         <div class="stat-n">2×</div>
-        <div class="stat-l">Per Academic Year</div>
+        <div class="stat-l" data-i18n="s5_l4">Per Academic Year</div>
       </div>
     </div>
   </div>
@@ -571,8 +641,8 @@
   <!-- S6: INDUSTRY -->
   <div class="slide" id="s6">
     <div class="head-block anim">
-      <p class="label">Industry Connections</p>
-      <h2 class="headline">Our Partners</h2>
+      <p class="label" data-i18n="s6_label">Industry Connections</p>
+      <h2 class="headline" data-i18n="s6_title">Our Partners</h2>
       <div class="bar"></div>
     </div>
     <div class="co-grid">
@@ -629,8 +699,8 @@
   <!-- S7: TEAM -->
   <div class="slide" id="s7">
     <div class="head-block anim">
-      <p class="label">Club Management</p>
-      <h2 class="headline">The Team</h2>
+      <p class="label" data-i18n="s7_label">Club Management</p>
+      <h2 class="headline" data-i18n="s7_title">The Team</h2>
       <div class="bar"></div>
     </div>
     <div class="team-grid">
@@ -656,10 +726,10 @@
   <!-- S8: THANK YOU -->
   <div class="slide" id="s8" style="text-align:center;">
     <div style="position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(37,144,240,0.13) 0%,transparent 68%);pointer-events:none;"></div>
-    <p class="anim" style="font-family:var(--fc);font-size:13px;font-weight:600;letter-spacing:9px;text-transform:uppercase;color:var(--blue3);margin-bottom:22px;">Sport Tech &amp; Wellness Tech Club</p>
-    <h1 class="anim" style="font-family:var(--fd);font-size:clamp(72px,11vw,140px);line-height:0.9;letter-spacing:3px;color:var(--white);">Thank<br><em style="font-style:normal;color:var(--blue2);">You</em></h1>
+    <p class="anim" data-i18n="s8_club" style="font-family:var(--fc);font-size:13px;font-weight:600;letter-spacing:9px;text-transform:uppercase;color:var(--blue3);margin-bottom:22px;">Sport Tech &amp; Wellness Tech Club</p>
+    <h1 class="anim" data-i18n="s8_h1" style="font-family:var(--fd);font-size:clamp(72px,11vw,140px);line-height:0.9;letter-spacing:3px;color:var(--white);">Thank<br><em style="font-style:normal;color:var(--blue2);">You</em></h1>
     <div class="anim" style="width:68px;height:3px;background:linear-gradient(90deg,var(--blue2),var(--cyan));border-radius:2px;margin:28px auto 26px;"></div>
-    <p class="anim" style="font-family:var(--fc);font-size:clamp(13px,1.6vw,18px);font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--mute);">Reichman University</p>
+    <p class="anim" data-i18n="s8_uni" style="font-family:var(--fc);font-size:clamp(13px,1.6vw,18px);font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--mute);">Reichman University</p>
   </div>
 
 </div>
@@ -674,6 +744,149 @@
 </div>
 
 <script>
+  /* ── TRANSLATIONS ── */
+  const T = {
+    en: {
+      s1_uni:    'Reichman University',
+      s1_h1:     'Sport<br><span class="amp">Tech &amp;</span><br><em>Wellness</em><br>Tech Club',
+      s1_tagline:'Where Academia Meets Industry',
+
+      s2_label:  'About',
+      s2_pitch:  'Israel\'s <em>exclusive</em> student program<br>bridging sport-tech talent<br>with industry.',
+      s2_chip1:  'Sport-Tech',
+      s2_chip2:  'Well-Tech',
+      s2_chip3:  'Academia &rarr; Industry',
+      s2_chip4:  'Reichman University',
+
+      s3_label:  'Objectives',
+      s3_title:  'What We Stand For',
+      s3_kw1:    'Innovation',
+      s3_sub1:   'Sport-Tech &amp; Well-Tech Entrepreneurship',
+      s3_kw2:    'Industry Access',
+      s3_sub2:   'Leaders in Israel &amp; Worldwide',
+      s3_kw3:    'Collaboration',
+      s3_sub3:   'Companies, Orgs &amp; Global Events',
+      s3_kw4:    'Development',
+      s3_sub4:   'Growing the Next Generation of Professionals',
+
+      s4_label:  'Program Highlights',
+      s4_title:  'By the Numbers',
+      s4_desc1:  'Curated Students per Cohort',
+      s4_desc2:  'Professional Industry Sessions / Cycle',
+      s4_stat3:  'Speakers',
+      s4_desc3:  'Guest Lectures — Founders, Executives &amp; Industry Leaders',
+      s4_stat4:  'Flagship',
+      s4_desc4:  'Annual Innovation &amp; Applied Project Event',
+      s4_desc5:  'Runs Each Semester — Semester A &amp; B',
+
+      s5_label:  'Our Community',
+      s5_title:  'Scale &amp; Reach',
+      s5_sub:    'Operating under the Reichman University Student Union —<br>thousands of students, all faculties, one ecosystem.',
+      s5_l1:     'Active Students',
+      s5_l2:     'Community Members',
+      s5_l3:     'Sessions / Cycle',
+      s5_l4:     'Per Academic Year',
+
+      s6_label:  'Industry Connections',
+      s6_title:  'Our Partners',
+
+      s7_label:  'Club Management',
+      s7_title:  'The Team',
+
+      s8_club:   'Sport Tech &amp; Wellness Tech Club',
+      s8_h1:     'Thank<br><em style="font-style:normal;color:var(--blue2);">You</em>',
+      s8_uni:    'Reichman University',
+    },
+    he: {
+      s1_uni:    'אוניברסיטת רייכמן',
+      s1_h1:     'ספורט<br><span class="amp">טק &amp;</span><br><em>בריאות</em><br>טק מועדון',
+      s1_tagline:'בין אקדמיה לתעשייה',
+
+      s2_label:  'אודות',
+      s2_pitch:  'התוכנית הסטודנטיאלית <em>הבלעדית</em> בישראל<br>המחברת כישרונות ספורט-טק<br>לתעשייה.',
+      s2_chip1:  'ספורט-טק',
+      s2_chip2:  'בריאות-טק',
+      s2_chip3:  'אקדמיה &larr; תעשייה',
+      s2_chip4:  'אוניברסיטת רייכמן',
+
+      s3_label:  'יעדים',
+      s3_title:  'מה אנחנו מייצגים',
+      s3_kw1:    'חדשנות',
+      s3_sub1:   'יזמות ספורט-טק ובריאות-טק',
+      s3_kw2:    'גישה לתעשייה',
+      s3_sub2:   'מובילים בישראל ובעולם',
+      s3_kw3:    'שיתוף פעולה',
+      s3_sub3:   'חברות, ארגונים ואירועים גלובליים',
+      s3_kw4:    'פיתוח',
+      s3_sub4:   'פיתוח הדור הבא של אנשי המקצוע',
+
+      s4_label:  'נקודות מרכזיות',
+      s4_title:  'במספרים',
+      s4_desc1:  'סטודנטים נבחרים לכל מחזור',
+      s4_desc2:  'מפגשים מקצועיים עם תעשייה / מחזור',
+      s4_stat3:  'דוברים',
+      s4_desc3:  'הרצאות אורח — מייסדים, מנהלים ומובילי תעשייה',
+      s4_stat4:  'אירוע דגל',
+      s4_desc4:  'אירוע חדשנות שנתי ופרויקטים יישומיים',
+      s4_desc5:  'פועל בכל סמסטר — א׳ וב׳',
+
+      s5_label:  'הקהילה שלנו',
+      s5_title:  'היקף והשפעה',
+      s5_sub:    'פועלים תחת אגודת הסטודנטים, אוניברסיטת רייכמן —<br>אלפי סטודנטים, כלל הפקולטות, אקוסיסטם אחד.',
+      s5_l1:     'סטודנטים פעילים',
+      s5_l2:     'חברי קהילה',
+      s5_l3:     'מפגשים / מחזור',
+      s5_l4:     'לשנה אקדמית',
+
+      s6_label:  'קשרי תעשייה',
+      s6_title:  'השותפים שלנו',
+
+      s7_label:  'הנהלת המועדון',
+      s7_title:  'הצוות',
+
+      s8_club:   'מועדון ספורט טק ובריאות טק',
+      s8_h1:     '<em style="font-style:normal;color:var(--blue2);">תודה</em>',
+      s8_uni:    'אוניברסיטת רייכמן',
+    }
+  };
+
+  let currentLang = 'en';
+
+  function setLang(lang) {
+    currentLang = lang;
+    const t = T[lang];
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+
+    document.documentElement.lang = lang;
+
+    // Hebrew: font override on s8 elements that have inline font-family
+    const s8h1 = document.querySelector('#s8 h1');
+    if (s8h1) {
+      s8h1.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fd)';
+      s8h1.style.letterSpacing = lang === 'he' ? '0' : '3px';
+    }
+    const s8club = document.querySelector('#s8 [data-i18n="s8_club"]');
+    if (s8club) {
+      s8club.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fc)';
+      s8club.style.letterSpacing = lang === 'he' ? '2px' : '9px';
+      s8club.style.textTransform = lang === 'he' ? 'none' : 'uppercase';
+    }
+    const s8uni = document.querySelector('#s8 [data-i18n="s8_uni"]');
+    if (s8uni) {
+      s8uni.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fc)';
+      s8uni.style.letterSpacing = lang === 'he' ? '2px' : '6px';
+      s8uni.style.textTransform = lang === 'he' ? 'none' : 'uppercase';
+    }
+
+    document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+    document.getElementById('btnHE').classList.toggle('active', lang === 'he');
+  }
+
+  /* ── SLIDES ── */
   const slides = Array.from(document.querySelectorAll('.slide'));
   const dotsEl = document.getElementById('navDots');
   const counterEl = document.getElementById('counter');
