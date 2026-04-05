@@ -34,6 +34,13 @@
       font-family: var(--fb);
     }
 
+    /* Use dynamic viewport height on mobile to avoid address-bar jump */
+    @supports (height: 100dvh) {
+      html, body { height: 100dvh; }
+      .stage { height: 100dvh; }
+      .slide { height: 100dvh; }
+    }
+
     /* ── STAGE ── */
     .stage { position: fixed; inset: 0; overflow: hidden; }
 
@@ -914,6 +921,8 @@
     slides[cur].classList.remove('active');
     dots[cur].classList.remove('active');
     cur = (idx + slides.length) % slides.length;
+    // Reset scroll position on both outgoing and incoming slide
+    slides.forEach(s => { s.scrollTop = 0; });
     slides[cur].querySelectorAll('.anim').forEach(el => {
       el.style.animation = 'none';
       void el.offsetHeight;
