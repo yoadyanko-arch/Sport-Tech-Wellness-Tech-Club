@@ -372,9 +372,10 @@
 
     /* Mobile */
     @media (max-width: 600px) {
-      .slide { padding: 32px 20px 72px; justify-content: flex-start; padding-top: 48px; overflow-y: auto; }
+      .slide { padding: 32px 20px 72px; justify-content: flex-start; padding-top: 64px; overflow-y: auto; }
 
-      #s1, #s8 { justify-content: center; }
+      /* Hero and Thank You: centered, no scroll */
+      #s1, #s8 { justify-content: center; overflow: hidden; touch-action: none; padding-top: 80px; }
       #s1 h1 { font-size: clamp(42px,13vw,72px); }
       #s1 .tagline { font-size: 11px; letter-spacing: 5px; }
 
