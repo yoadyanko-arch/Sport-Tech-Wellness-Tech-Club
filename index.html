@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sport Tech & Wellness Tech Club — Reichman University</title>
+  <title>Sport Tech &amp; Wellness Tech Club — Reichman University</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@300;400;600;700;800&family=Heebo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,71 +22,68 @@
       --fc: 'Barlow Condensed', sans-serif;
       --fb: 'Barlow', sans-serif;
       --fh: 'Heebo', sans-serif;
+      --hh: 64px;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html, body {
-      width: 100%; height: 100%;
-      overflow: hidden;
-      /* Prevent iOS Safari elastic bounce from shifting content */
-      position: fixed;
-      overscroll-behavior: none;
-      background: var(--bg);
-      color: var(--white);
-      font-family: var(--fb);
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--white);
+      font-family: var(--fb); min-height: 100vh;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 44px 44px; pointer-events: none; z-index: 0;
     }
 
-    /* ── STAGE ── */
-    .stage { position: fixed; inset: 0; overflow: hidden; overscroll-behavior: none; }
-
-    .stage::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 44px 44px;
-      pointer-events: none; z-index: 0;
+    /* ── HEADER ── */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--hh);
+      background: rgba(5,17,31,0.85); backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      z-index: 400; display: flex; align-items: center;
+      padding: 0 44px; gap: 32px;
     }
-
-    .stage::after {
-      content: '';
-      position: absolute;
-      top: -30%; right: -12%;
-      width: 55%; height: 160%;
-      background: linear-gradient(
-        135deg,
-        transparent 0%, transparent 44%,
-        rgba(37,144,240,0.065) 44%, rgba(37,144,240,0.065) 49%,
-        transparent 49%, transparent 59%,
-        rgba(37,144,240,0.04) 59%, rgba(37,144,240,0.04) 62%,
-        transparent 62%
-      );
-      pointer-events: none; z-index: 0;
+    .site-logo {
+      font-family: var(--fd); font-size: 19px; letter-spacing: 2px;
+      color: var(--white); text-decoration: none; white-space: nowrap; flex-shrink: 0;
     }
-
-    /* ── SLIDES ── */
-    .slide {
-      position: absolute; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 56px 80px;
-      z-index: 1;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), visibility 0.65s;
+    .site-logo em { font-style: normal; color: var(--blue2); }
+    .site-nav {
+      display: flex; gap: 28px; align-items: center;
+      flex: 1; justify-content: center;
     }
-    .slide.active { opacity: 1; visibility: visible; }
+    .site-nav a {
+      font-family: var(--fc); font-size: 12px; font-weight: 600;
+      letter-spacing: 3px; text-transform: uppercase;
+      color: rgba(255,255,255,0.45); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover, .site-nav a.active { color: var(--white); }
+    .lang-toggle {
+      display: flex; border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.14); flex-shrink: 0;
+    }
+    .lang-btn {
+      padding: 5px 12px; font-family: var(--fc); font-size: 12px;
+      font-weight: 700; letter-spacing: 2px;
+      background: transparent; color: rgba(255,255,255,0.45);
+      border: none; cursor: pointer; transition: all 0.2s;
+    }
+    .lang-btn.active { background: var(--blue2); color: #fff; }
+    .lang-btn:hover:not(.active) { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
 
-    .anim { opacity: 0; transform: translateY(22px); }
-    .slide.active .anim { animation: up 0.65s cubic-bezier(0.16,1,0.3,1) forwards; }
-    .slide.active .anim:nth-child(1) { animation-delay: 0.04s; }
-    .slide.active .anim:nth-child(2) { animation-delay: 0.16s; }
-    .slide.active .anim:nth-child(3) { animation-delay: 0.28s; }
-    .slide.active .anim:nth-child(4) { animation-delay: 0.40s; }
-    .slide.active .anim:nth-child(5) { animation-delay: 0.52s; }
-    .slide.active .anim:nth-child(6) { animation-delay: 0.64s; }
-    .slide.active .anim:nth-child(7) { animation-delay: 0.76s; }
-    .slide.active .anim:nth-child(8) { animation-delay: 0.88s; }
-    @keyframes up { to { opacity: 1; transform: translateY(0); } }
+    /* ── LAYOUT ── */
+    section {
+      padding: 120px 0; position: relative; z-index: 1;
+      scroll-margin-top: var(--hh);
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 44px; }
+    .section-divider {
+      width: 100%; height: 1px; position: relative; z-index: 1;
+      background: linear-gradient(90deg, transparent, rgba(37,144,240,0.18), transparent);
+    }
 
     /* ── SHARED ── */
     .label {
@@ -99,21 +96,22 @@
     }
     .bar {
       width: 48px; height: 3px;
-      background: linear-gradient(90deg, var(--blue2), var(--cyan));
-      border-radius: 2px;
+      background: linear-gradient(90deg, var(--blue2), var(--cyan)); border-radius: 2px;
     }
     .head-block {
       display: flex; flex-direction: column;
-      align-items: center; gap: 10px;
-      text-align: center; margin-bottom: 36px;
+      align-items: center; gap: 10px; text-align: center; margin-bottom: 64px;
     }
 
-    /* ── S1: HERO ── */
-    #s1 { text-align: center; }
+    /* ── HERO ── */
+    #s1 {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden; padding: 0; scroll-margin-top: 0;
+    }
     #s1 .glow {
-      position: absolute; width: 640px; height: 640px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(37,144,240,0.13) 0%, transparent 68%);
-      pointer-events: none;
+      position: absolute; width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,144,240,0.12) 0%, transparent 68%);
+      pointer-events: none; top: 50%; left: 50%; transform: translate(-50%,-50%);
     }
     #s1 .deco {
       position: absolute; bottom: 0; right: 0;
@@ -129,8 +127,7 @@
     }
     #s1 .eyebrow {
       font-family: var(--fc); font-size: 13px; font-weight: 600;
-      letter-spacing: 9px; text-transform: uppercase; color: var(--blue3);
-      margin-bottom: 22px;
+      letter-spacing: 9px; text-transform: uppercase; color: var(--blue3); margin-bottom: 22px;
     }
     #s1 h1 {
       font-family: var(--fd); font-size: clamp(60px,9.5vw,126px);
@@ -138,7 +135,7 @@
     }
     #s1 h1 em { font-style: normal; color: var(--blue2); }
     #s1 h1 .amp { color: var(--blue3); }
-    #s1 .hero-bar {
+    .hero-bar {
       width: 68px; height: 3px;
       background: linear-gradient(90deg, var(--blue2), var(--cyan));
       border-radius: 2px; margin: 24px auto 26px;
@@ -147,399 +144,415 @@
       font-family: var(--fc); font-size: clamp(14px,1.8vw,22px);
       font-weight: 400; letter-spacing: 9px; text-transform: uppercase; color: var(--mute);
     }
+    .scroll-hint {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      font-family: var(--fc); font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--mute); animation: bounce 2.2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%,100% { transform: translateX(-50%) translateY(0); opacity:.5; }
+      50%      { transform: translateX(-50%) translateY(7px); opacity:1; }
+    }
 
-    /* ── S2: ABOUT ── */
+    /* ── ABOUT ── */
     #s2 { text-align: center; }
     #s2 .card {
-      max-width: 820px;
+      max-width: 820px; margin: 0 auto;
       background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-top: 2px solid var(--blue2);
-      padding: 48px 56px; border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.07); border-top: 2px solid var(--blue2);
+      padding: 56px 64px; border-radius: 2px;
     }
     #s2 .pitch {
       font-family: var(--fd); font-size: clamp(24px,3.2vw,42px);
-      letter-spacing: 2px; line-height: 1.15; color: var(--white);
-      margin: 20px 0 32px;
+      letter-spacing: 2px; line-height: 1.15; color: var(--white); margin: 22px 0 36px;
     }
     #s2 .pitch em { font-style: normal; color: var(--blue2); }
-    #s2 .chips {
-      display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
-    }
+    #s2 .chips { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
     #s2 .chip {
       font-family: var(--fc); font-size: 12px; font-weight: 600;
       letter-spacing: 3px; text-transform: uppercase;
-      border: 1px solid rgba(37,144,240,0.4);
-      background: rgba(37,144,240,0.08);
+      border: 1px solid rgba(37,144,240,0.4); background: rgba(37,144,240,0.08);
       color: var(--blue3); padding: 7px 18px; border-radius: 2px;
     }
 
-    /* ── S3: OBJECTIVES ── */
+    /* ── OBJECTIVES ── */
     .obj-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: 18px; width: 100%; max-width: 920px;
+      gap: 18px; max-width: 920px; margin: 0 auto;
     }
     .obj-card {
       background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-left: 3px solid var(--blue2);
-      padding: 26px 28px; border-radius: 2px;
-      display: flex; gap: 18px; align-items: flex-start;
+      border: 1px solid rgba(255,255,255,0.07); border-left: 3px solid var(--blue2);
+      padding: 32px; border-radius: 2px; display: flex; gap: 18px; align-items: flex-start;
       transition: background 0.25s, border-left-color 0.25s, transform 0.25s;
     }
-    .obj-card:hover {
-      background: rgba(37,144,240,0.08); border-left-color: var(--cyan);
-      transform: translateX(5px);
-    }
-    .obj-num {
-      font-family: var(--fd); font-size: 40px; line-height: 1;
-      color: rgba(37,144,240,0.25); flex-shrink: 0; margin-top: -2px;
-    }
-    .obj-kw {
-      font-family: var(--fd); font-size: 22px; letter-spacing: 1px;
-      color: var(--white); margin-bottom: 4px;
-    }
-    .obj-sub {
-      font-family: var(--fc); font-size: 13px; font-weight: 400;
-      letter-spacing: 1px; color: var(--mute); text-transform: uppercase;
-    }
+    .obj-card:hover { background: rgba(37,144,240,0.08); border-left-color: var(--cyan); transform: translateX(5px); }
+    .obj-num { font-family: var(--fd); font-size: 40px; line-height: 1; color: rgba(37,144,240,0.25); flex-shrink: 0; }
+    .obj-kw { font-family: var(--fd); font-size: 22px; letter-spacing: 1px; color: var(--white); margin-bottom: 4px; }
+    .obj-sub { font-family: var(--fc); font-size: 13px; font-weight: 400; letter-spacing: 1px; color: var(--mute); text-transform: uppercase; }
 
-    /* ── S4: HIGHLIGHTS ── */
-    .hl-stack {
-      display: flex; flex-direction: column;
-      gap: 10px; width: 100%; max-width: 780px;
-    }
+    /* ── HIGHLIGHTS ── */
+    .hl-stack { display: flex; flex-direction: column; gap: 10px; max-width: 780px; margin: 0 auto; }
     .hl-row {
-      display: flex; align-items: center; gap: 0;
+      display: flex; align-items: center; flex-wrap: wrap;
       background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 2px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.07); border-radius: 2px; overflow: hidden; cursor: pointer;
       transition: background 0.25s, border-color 0.25s;
     }
-    .hl-row:hover {
-      background: rgba(37,144,240,0.07); border-color: rgba(90,181,255,0.22);
-    }
+    .hl-row:hover { background: rgba(37,144,240,0.07); border-color: rgba(90,181,255,0.22); }
+    .hl-row:active { background: rgba(37,144,240,0.14); }
     .hl-stat {
-      font-family: var(--fd); font-size: 28px; letter-spacing: 1px;
-      color: var(--blue2); padding: 14px 22px;
-      min-width: 130px; text-align: center; flex-shrink: 0;
-      border-right: 1px solid rgba(255,255,255,0.06);
-      background: rgba(37,144,240,0.05);
+      font-family: var(--fd); font-size: 28px; letter-spacing: 1px; color: var(--blue2);
+      padding: 18px 24px; min-width: 140px; text-align: center; flex-shrink: 0;
+      border-right: 1px solid rgba(255,255,255,0.06); background: rgba(37,144,240,0.05);
     }
     .hl-desc {
       font-family: var(--fc); font-size: 15px; font-weight: 600;
-      letter-spacing: 1px; text-transform: uppercase;
-      color: var(--dim); padding: 14px 24px;
+      letter-spacing: 1px; text-transform: uppercase; color: var(--dim); padding: 18px 24px; flex: 1;
     }
+    .hl-chevron {
+      flex-shrink: 0; padding: 18px 18px; color: var(--blue3); font-size: 10px;
+      transition: transform 0.3s;
+    }
+    .hl-row.expanded .hl-chevron { transform: rotate(180deg); }
+    .hl-expand {
+      flex-basis: 100%; max-height: 0; overflow: hidden;
+      transition: max-height 0.38s cubic-bezier(0.4,0,0.2,1), padding 0.38s;
+      font-family: var(--fb); font-size: 14px; font-weight: 300;
+      line-height: 1.75; color: var(--mute); padding: 0 24px;
+      border-top: 0px solid rgba(255,255,255,0.06);
+    }
+    .hl-row.expanded .hl-expand { max-height: 160px; padding: 14px 24px 16px; border-top-width: 1px; }
 
-    /* ── S5: COMMUNITY ── */
+    /* ── COMMUNITY ── */
     #s5 { text-align: center; }
     #s5 .comm-sub {
       max-width: 620px; font-size: clamp(14px,1.6vw,17px);
-      font-weight: 300; line-height: 1.7; color: var(--mute);
-      margin: 14px 0 52px;
+      font-weight: 300; line-height: 1.7; color: var(--mute); margin: 14px auto 60px;
     }
-    .stats-row { display: flex; gap: 80px; justify-content: center; }
+    .stats-row { display: flex; gap: 80px; justify-content: center; flex-wrap: wrap; }
     .stat { text-align: center; }
     .stat-n {
       font-family: var(--fd); font-size: clamp(54px,8vw,92px); line-height: 1;
       background: linear-gradient(135deg, var(--blue2), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
-    .stat-l {
-      font-family: var(--fc); font-size: 11px; font-weight: 600;
-      letter-spacing: 4px; text-transform: uppercase;
-      color: var(--mute); margin-top: 8px;
-    }
+    .stat-l { font-family: var(--fc); font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--mute); margin-top: 8px; }
 
-    /* ── S6: INDUSTRY ── */
+    /* ── PARTNERS ── */
     .co-grid {
       display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 14px; max-width: 980px; width: 100%;
+      gap: 14px; max-width: 980px; margin: 0 auto;
     }
     .co-card {
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 18px 14px 16px; border-radius: 2px; text-align: center;
-      position: relative; overflow: hidden;
+      background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.08);
+      padding: 22px 16px 18px; border-radius: 2px; text-align: center;
+      position: relative; overflow: hidden; cursor: pointer;
       display: flex; flex-direction: column; align-items: center; gap: 10px;
       transition: background 0.3s, border-color 0.3s, transform 0.3s cubic-bezier(0.16,1,0.3,1);
     }
     .co-card::after {
       content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
       background: linear-gradient(90deg, var(--blue2), var(--cyan));
-      transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
     }
-    .co-card:hover {
-      background: rgba(37,144,240,0.1); border-color: rgba(37,144,240,0.38);
-      transform: translateY(-4px);
-    }
+    .co-card:hover { background: rgba(37,144,240,0.1); border-color: rgba(37,144,240,0.38); transform: translateY(-4px); }
     .co-card:hover::after { transform: scaleX(1); }
-    .co-logo {
-      width: 100%; height: 52px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .co-logo img {
-      max-height: 48px; max-width: 130px;
-      object-fit: contain;
-      opacity: 0.88;
-      transition: opacity 0.2s;
-    }
+    .co-card:active { transform: translateY(-1px) scale(0.97); background: rgba(37,144,240,0.18); }
+    .co-logo { width: 100%; height: 52px; display: flex; align-items: center; justify-content: center; }
+    .co-logo img { max-height: 48px; max-width: 130px; object-fit: contain; opacity: 0.88; transition: opacity 0.2s; }
     .co-card:hover .co-logo img { opacity: 1; }
-    .co-name {
-      font-family: var(--fc); font-size: 13px; font-weight: 700;
-      letter-spacing: 0.5px; color: var(--dim); line-height: 1.25;
-    }
+    .co-name { font-family: var(--fc); font-size: 13px; font-weight: 700; letter-spacing: 0.5px; color: var(--dim); }
 
-    /* ── S7: TEAM ── */
-    .team-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 28px; max-width: 900px; width: 100%;
-    }
-    .member { text-align: center; transition: transform 0.3s ease; }
+    /* ── TEAM ── */
+    .team-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 34px 26px; max-width: 1060px; margin: 0 auto; }
+    .member { width: 176px; text-align: center; cursor: pointer; transition: transform 0.3s; }
+    /* tighten before the row would break, then fall to 3+2 rather than a lopsided 4+1 */
+    @media (max-width: 1100px) { .team-grid { gap: 30px 16px; } .member { width: 158px; } }
+    @media (max-width: 950px)  { .team-grid { max-width: 520px; } }
     .member:hover { transform: translateY(-7px); }
+    .member:active { transform: translateY(-2px) scale(0.97); }
     .avatar {
-      width: 140px; height: 140px; border-radius: 50%;
-      margin: 0 auto 16px;
-      border: 2px solid rgba(37,144,240,0.38);
-      overflow: hidden;
+      width: 150px; height: 150px; border-radius: 50%; margin: 0 auto 16px;
+      border: 2px solid rgba(37,144,240,0.38); overflow: hidden;
       background: linear-gradient(135deg, #0d1e31, #1a6fc4);
       display: flex; align-items: center; justify-content: center;
       font-family: var(--fd); font-size: 38px; color: rgba(255,255,255,0.45);
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .member:hover .avatar {
-      border-color: var(--blue3);
-      box-shadow: 0 0 26px rgba(37,144,240,0.28);
-    }
+    .member:hover .avatar { border-color: var(--blue3); box-shadow: 0 0 26px rgba(37,144,240,0.28); }
     .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .m-name {
-      font-family: var(--fc); font-size: 18px; font-weight: 700;
-      letter-spacing: 1px; color: var(--white); margin-bottom: 4px;
-    }
-    .m-role {
-      font-size: 11px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--blue3);
-    }
+    .m-name { font-family: var(--fc); font-size: 18px; font-weight: 700; letter-spacing: 1px; color: var(--white); margin-bottom: 4px; }
+    .m-role { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--blue3); }
 
-    /* ── LANG TOGGLE ── */
-    .lang-toggle {
-      position: fixed; top: 20px; right: 26px; z-index: 400;
-      display: flex; gap: 0; border-radius: 4px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.14);
-      backdrop-filter: blur(10px);
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.76); z-index: 600;
+      display: flex; align-items: center; justify-content: center; padding: 20px;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
     }
-    .lang-btn {
-      padding: 6px 14px;
+    .modal-overlay.open { opacity: 1; visibility: visible; }
+    .modal-card {
+      background: var(--bg2); border: 1px solid rgba(255,255,255,0.1);
+      border-top: 2px solid var(--blue2); border-radius: 3px;
+      max-width: 640px; width: 100%; max-height: 90vh; overflow-y: auto;
+      position: relative; transform: translateY(18px);
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+    .modal-overlay.open .modal-card { transform: translateY(0); }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px; z-index: 10;
+      width: 30px; height: 30px; background: rgba(255,255,255,0.06);
+      border: none; border-radius: 50%; color: rgba(255,255,255,0.5);
+      font-size: 14px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, color 0.2s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+    /* Company modal */
+    .mc-header {
+      padding: 28px 36px 22px; border-bottom: 1px solid rgba(255,255,255,0.07);
+      display: flex; align-items: center; gap: 18px;
+    }
+    .mc-logo { height: 46px; display: flex; align-items: center; }
+    .mc-logo img { max-height: 42px; max-width: 120px; object-fit: contain; }
+    .mc-name { font-family: var(--fd); font-size: 24px; letter-spacing: 1px; color: var(--white); }
+    .mc-body { padding: 22px 36px 30px; display: flex; flex-direction: column; gap: 18px; }
+    .mc-label { font-family: var(--fc); font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue3); margin-bottom: 5px; }
+    .mc-speaker { font-family: var(--fc); font-size: 14px; font-weight: 600; letter-spacing: 0.5px; color: var(--dim); line-height: 1.6; }
+    .mc-desc { font-size: 14px; line-height: 1.8; color: var(--dim); font-weight: 300; }
+    .mc-video {
+      width: 100%; border-radius: 2px; display: block;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: #000; max-height: 320px;
+    }
+    .mc-btn {
+      display: inline-flex; align-items: center; gap: 8px;
       font-family: var(--fc); font-size: 12px; font-weight: 700; letter-spacing: 2px;
-      background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.45);
-      border: none; cursor: pointer; transition: all 0.2s ease;
+      text-transform: uppercase; color: var(--blue3); text-decoration: none;
+      border: 1px solid rgba(37,144,240,0.35); background: rgba(37,144,240,0.08);
+      padding: 10px 20px; border-radius: 2px; align-self: flex-start;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
-    .lang-btn.active {
-      background: var(--blue2); color: #fff;
+    .mc-btn:hover { background: rgba(37,144,240,0.18); border-color: var(--blue3); color: #fff; }
+
+    /* Member modal */
+    .mm-top {
+      padding: 34px 36px 22px; display: flex; flex-direction: column;
+      align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-    .lang-btn:hover:not(.active) { background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
-
-    /* ── RESPONSIVE ── */
-
-    /* Tablet */
-    @media (max-width: 900px) {
-      .slide { padding: 40px 40px 70px; }
-
-      #s1 h1 { font-size: clamp(48px,10vw,90px); }
-
-      #s2 .card { padding: 36px 32px; }
-      #s2 .pitch { font-size: clamp(20px,4vw,32px); }
-
-      .obj-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-      .obj-kw { font-size: 18px; }
-
-      .hl-stat { font-size: 22px; min-width: 110px; padding: 12px 16px; }
-      .hl-desc { font-size: 13px; padding: 12px 16px; }
-
-      .co-grid { grid-template-columns: repeat(3,1fr); gap: 12px; }
-      .co-name { font-size: 12px; }
-      .co-logo { height: 34px; }
-      .co-logo img { max-height: 30px; max-width: 90px; }
-
-      .team-grid { grid-template-columns: repeat(4,1fr); gap: 16px; }
-      .avatar { width: 110px; height: 110px; }
-      .m-name { font-size: 14px; }
-
-      .stats-row { gap: 50px; }
+    .mm-avatar {
+      width: 108px; height: 108px; border-radius: 50%; overflow: hidden;
+      border: 2px solid rgba(37,144,240,0.45); margin-bottom: 16px;
+      background: linear-gradient(135deg, #0d1e31, #1a6fc4);
     }
-
-    /* Mobile */
-    @media (max-width: 600px) {
-      .slide { padding: 32px 20px 72px; justify-content: flex-start; padding-top: 64px; overflow-y: auto; }
-
-      /* Hero and Thank You: centered, no scroll */
-      #s1, #s8 { justify-content: center; overflow: hidden; touch-action: none; padding-top: 80px; }
-      #s1 h1 { font-size: clamp(42px,13vw,72px); }
-      #s1 .tagline { font-size: 11px; letter-spacing: 5px; }
-
-      #s2 .card { padding: 28px 22px; }
-      #s2 .pitch { font-size: clamp(18px,5.5vw,26px); }
-      #s2 .chips { gap: 8px; }
-      #s2 .chip { font-size: 10px; padding: 5px 12px; }
-
-      .head-block { margin-bottom: 22px; }
-      .headline { font-size: clamp(30px,8vw,44px); }
-
-      .obj-grid { grid-template-columns: 1fr; gap: 10px; }
-      .obj-card { padding: 18px 18px; }
-      .obj-num { font-size: 30px; }
-      .obj-kw { font-size: 17px; }
-      .obj-sub { font-size: 11px; }
-
-      .hl-stack { gap: 8px; }
-      .hl-stat { font-size: 18px; min-width: 90px; padding: 10px 12px; }
-      .hl-desc { font-size: 12px; padding: 10px 14px; letter-spacing: 0.5px; }
-
-      #s5 .comm-sub { font-size: 13px; margin: 12px 0 36px; }
-      .stats-row { gap: 28px; }
-      .stat-n { font-size: clamp(40px,12vw,64px); }
-      .stat-l { font-size: 10px; letter-spacing: 2px; }
-
-      .co-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
-      .co-card { padding: 14px 8px; }
-      .co-name { font-size: 11px; }
-      .co-logo { height: 30px; padding: 3px 6px; }
-      .co-logo img { max-height: 22px; max-width: 80px; }
-
-      .team-grid { grid-template-columns: repeat(2,1fr); gap: 20px; }
-      .avatar { width: 100px; height: 100px; }
-      .m-name { font-size: 14px; }
-
-      .nav-btns { right: 16px; bottom: 14px; }
-      .counter { left: 16px; bottom: 20px; }
-      .nav-dots { bottom: 20px; }
+    .mm-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .mm-name { font-family: var(--fd); font-size: 28px; letter-spacing: 1px; color: var(--white); margin-bottom: 6px; }
+    .mm-role { font-family: var(--fc); font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--blue3); }
+    .mm-body { padding: 22px 36px 30px; display: flex; flex-direction: column; gap: 18px; align-items: center; }
+    .mm-bio { font-size: 14px; line-height: 1.85; color: var(--dim); font-weight: 300; text-align: center; max-width: 480px; }
+    .mm-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--fc); font-size: 12px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--blue3); text-decoration: none;
+      border: 1px solid rgba(37,144,240,0.35); background: rgba(37,144,240,0.08);
+      padding: 10px 20px; border-radius: 2px;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
+    .mm-btn:hover { background: rgba(37,144,240,0.18); border-color: var(--blue3); color: #fff; }
 
-    /* ── HEBREW OVERRIDES ── */
-    html[lang="he"] {
-      direction: rtl;
-    }
-    html[lang="he"] .label,
-    html[lang="he"] #s1 .eyebrow,
-    html[lang="he"] #s1 .tagline,
-    html[lang="he"] .chip,
-    html[lang="he"] .hl-desc,
-    html[lang="he"] .stat-l,
-    html[lang="he"] .obj-sub,
-    html[lang="he"] .co-name,
-    html[lang="he"] .m-name,
-    html[lang="he"] #s5 .comm-sub {
-      font-family: var(--fh);
-      letter-spacing: 0;
-      text-transform: none;
+    /* ── HEBREW ── */
+    html[lang="he"] { direction: rtl; }
+    html[lang="he"] .site-nav a,
+    html[lang="he"] .label, html[lang="he"] #s1 .eyebrow, html[lang="he"] #s1 .tagline,
+    html[lang="he"] .chip, html[lang="he"] .hl-desc, html[lang="he"] .stat-l,
+    html[lang="he"] .obj-sub, html[lang="he"] .co-name, html[lang="he"] .m-name,
+    html[lang="he"] .m-role, html[lang="he"] #s5 .comm-sub,
+    html[lang="he"] #s8 .footer-club, html[lang="he"] #s8 .footer-uni,
+    html[lang="he"] .scroll-hint {
+      font-family: var(--fh); letter-spacing: 0; text-transform: none;
     }
     html[lang="he"] .headline,
-    html[lang="he"] #s1 h1,
-    html[lang="he"] #s2 .pitch,
-    html[lang="he"] .obj-kw {
-      font-family: var(--fh);
-      letter-spacing: 0;
+    html[lang="he"] #s2 .pitch, html[lang="he"] .obj-kw, html[lang="he"] #s8 h2 {
+      font-family: var(--fh); letter-spacing: 0;
     }
-    html[lang="he"] #s1 h1 {
-      line-height: 1;
+    html[lang="he"] #s1 h1 { direction: ltr; }
+    html[lang="he"] [data-i18n="s2_chip3"] { direction: ltr; }
+    html[lang="he"] .obj-card { border-left: none; border-right: 3px solid var(--blue2); }
+    html[lang="he"] .obj-card:hover { border-right-color: var(--cyan); transform: translateX(-5px); }
+    html[lang="he"] .hl-stat { border-right: none; border-left: 1px solid rgba(255,255,255,0.06); font-family: var(--fd); }
+    html[lang="he"] .mc-label, html[lang="he"] .mc-speaker, html[lang="he"] .mc-desc,
+    html[lang="he"] .mm-role, html[lang="he"] .mm-bio, html[lang="he"] .mc-btn,
+    html[lang="he"] .mm-btn, html[lang="he"] .hl-expand {
+      font-family: var(--fh); letter-spacing: 0; text-transform: none;
     }
-    html[lang="he"] [data-i18n="s2_chip3"] {
-      direction: ltr;
-    }
+    html[lang="he"] .mc-name, html[lang="he"] .mm-name { font-family: var(--fh); letter-spacing: 0; }
 
-    html[lang="he"] .obj-card {
-      border-left: none;
-      border-right: 3px solid var(--blue2);
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(5,17,31,0.6);
+      position: relative; z-index: 1;
     }
-    html[lang="he"] .obj-card:hover {
-      border-right-color: var(--cyan);
-      transform: translateX(-5px);
+    .footer-main {
+      display: grid; grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 48px; padding: 72px 44px 56px; max-width: 1100px; margin: 0 auto;
     }
-    html[lang="he"] .hl-stat {
-      border-right: none;
-      border-left: 1px solid rgba(255,255,255,0.06);
-      font-family: var(--fd);
+    .footer-brand-name {
+      font-family: var(--fd); font-size: 22px; letter-spacing: 2px;
+      color: var(--white); margin-bottom: 16px; line-height: 1.2;
     }
-    html[lang="he"] .counter { left: auto; right: 36px; }
-    html[lang="he"] .lang-toggle { right: auto; left: 26px; }
-
-    /* ── NAV ── */
-    .nav-dots {
-      position: fixed; bottom: 26px; left: 50%; transform: translateX(-50%);
-      display: flex; gap: 8px; z-index: 300;
+    .footer-brand-name em { font-style: normal; color: var(--blue2); }
+    .footer-brand-sub {
+      font-family: var(--fc); font-size: 11px; font-weight: 600;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--blue3);
+      margin-bottom: 18px;
     }
-    .dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.22); border: none; cursor: pointer;
-      transition: all 0.3s ease;
+    .footer-desc {
+      font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--mute);
+      max-width: 300px;
     }
-    .dot.active { background: var(--blue2); width: 24px; border-radius: 4px; }
-    .nav-btns {
-      position: fixed; bottom: 18px; right: 36px;
-      display: flex; gap: 8px; z-index: 300;
-      direction: ltr;
+    .footer-col-title {
+      font-family: var(--fc); font-size: 10px; font-weight: 700;
+      letter-spacing: 4px; text-transform: uppercase; color: var(--blue3);
+      margin-bottom: 20px;
     }
-    .nav-btn {
-      width: 38px; height: 38px; border-radius: 50%;
+    .footer-nav-links { display: flex; flex-direction: column; gap: 12px; }
+    .footer-nav-links a {
+      font-family: var(--fc); font-size: 14px; font-weight: 500;
+      letter-spacing: 1px; color: rgba(255,255,255,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav-links a:hover { color: var(--white); }
+    .footer-contact-links { display: flex; flex-direction: column; gap: 14px; }
+    .footer-contact-links a {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--fc); font-size: 14px; font-weight: 500;
+      letter-spacing: 0.5px; color: rgba(255,255,255,0.5); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-contact-links a:hover { color: var(--white); }
+    .footer-icon {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
       border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.65);
-      font-size: 15px; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      transition: all 0.2s ease; backdrop-filter: blur(10px);
+      font-size: 14px; transition: border-color 0.2s, background 0.2s;
     }
-    .nav-btn:hover { background: var(--blue2); border-color: var(--blue2); color: #fff; }
-    .counter {
-      position: fixed; bottom: 26px; left: 36px;
-      font-family: var(--fc); font-size: 12px; font-weight: 600;
-      letter-spacing: 3px; color: var(--mute); z-index: 300;
+    .footer-contact-links a:hover .footer-icon {
+      border-color: var(--blue3); background: rgba(37,144,240,0.12);
     }
-    .progress {
-      position: fixed; top: 0; left: 0; height: 2px;
-      background: linear-gradient(90deg, var(--blue2), var(--cyan));
-      z-index: 300; transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 18px 44px; max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy {
+      font-family: var(--fc); font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; color: var(--mute);
+    }
+
+    html[lang="he"] .footer-desc { font-family: var(--fh); letter-spacing: 0; }
+    html[lang="he"] .footer-brand-sub,
+    html[lang="he"] .footer-col-title,
+    html[lang="he"] .footer-nav-links a,
+    html[lang="he"] .footer-contact-links a,
+    html[lang="he"] .footer-copy { font-family: var(--fh); letter-spacing: 0; text-transform: none; }
+
+    @media (max-width: 900px) {
+      .footer-main { grid-template-columns: 1fr 1fr; gap: 36px; padding: 56px 28px 40px; }
+      .footer-bottom { padding: 16px 28px; }
+    }
+    @media (max-width: 600px) {
+      .footer-main { grid-template-columns: 1fr; gap: 32px; padding: 48px 20px 36px; }
+      .footer-bottom { padding: 14px 20px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .container { padding: 0 28px; }
+      section { padding: 88px 0; }
+      .site-header { padding: 0 28px; gap: 20px; }
+      .site-nav { gap: 18px; }
+      .site-nav a { font-size: 11px; letter-spacing: 2px; }
+      #s2 .card { padding: 40px 36px; }
+      .obj-grid { gap: 14px; }
+      .co-grid { grid-template-columns: repeat(3,1fr); }
+      .stats-row { gap: 50px; }
+    }
+    @media (max-width: 680px) {
+      .site-nav { display: none; }
+      .site-header { padding: 0 20px; gap: 12px; justify-content: space-between; }
+      .site-logo { font-size: 15px; }
+      section { padding: 72px 0; }
+      .container { padding: 0 20px; }
+      #s1 h1 { font-size: clamp(46px,13vw,72px); }
+      #s1 .tagline { font-size: 11px; letter-spacing: 5px; }
+      #s2 .card { padding: 28px 22px; }
+      #s2 .pitch { font-size: clamp(18px,5.5vw,26px); }
+      .head-block { margin-bottom: 40px; }
+      .obj-grid { grid-template-columns: 1fr; }
+      .hl-stat { font-size: 20px; min-width: 100px; padding: 14px 16px; }
+      .hl-desc { font-size: 13px; padding: 14px 16px; letter-spacing: 0.5px; }
+      .co-grid { grid-template-columns: repeat(2,1fr); gap: 8px; }
+      .co-logo { height: 38px; }
+      .co-logo img { max-height: 28px; }
+      .team-grid { gap: 26px 16px; }
+      .member { width: 132px; }
+      .avatar { width: 110px; height: 110px; }
+      .stats-row { gap: 28px; }
+      .mc-header { padding: 20px 20px 16px; gap: 12px; }
+      .mc-body { padding: 16px 20px 24px; gap: 14px; }
+      .mc-gallery img { flex: 0 0 calc(80% - 4px); height: 160px; }
+      .mm-top { padding: 26px 20px 16px; }
+      .mm-body { padding: 16px 20px 24px; }
     }
   </style>
 </head>
 <body>
 
-<!-- Language Toggle -->
-<div class="lang-toggle">
-  <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
-  <button class="lang-btn" id="btnHE" onclick="setLang('he')">עב</button>
-</div>
-
-<div class="stage">
-
-  <!-- S1: HERO -->
-  <div class="slide active" id="s1">
-    <div class="glow"></div>
-    <div class="deco"></div>
-    <p class="eyebrow anim" data-i18n="s1_uni">Reichman University</p>
-    <h1 class="anim" data-i18n="s1_h1">
-      Sport<br>
-      <span class="amp">Tech &amp;</span><br>
-      <em>Wellness</em><br>
-      Tech Club
-    </h1>
-    <div class="hero-bar anim"></div>
-    <p class="tagline anim" data-i18n="s1_tagline">Where Academia Meets Industry</p>
+<header class="site-header">
+  <a href="#s1" class="site-logo">Sport<em>Tech</em> &amp; Wellness</a>
+  <nav class="site-nav" id="siteNav">
+    <a href="#s2" data-i18n="nav_about">About</a>
+    <a href="#s3" data-i18n="nav_program">Program</a>
+    <a href="#s5" data-i18n="nav_community">Community</a>
+    <a href="#s6" data-i18n="nav_partners">Partners</a>
+    <a href="#s7" data-i18n="nav_team">Team</a>
+  </nav>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" id="btnHE" onclick="setLang('he')">עב</button>
   </div>
+</header>
 
-  <!-- S2: ABOUT -->
-  <div class="slide" id="s2">
+<!-- HERO -->
+<section id="s1">
+  <div class="glow"></div>
+  <div class="deco"></div>
+  <div style="position:relative;z-index:1;">
+    <p class="eyebrow" data-i18n="s1_uni">Reichman University</p>
+    <p class="eyebrow" style="margin-top:-0.5em;opacity:0.5;font-size:0.72em;letter-spacing:0.08em;" data-i18n="s1_union">Student Union</p>
+    <h1>Sport<br><span class="amp">Tech &amp;</span><br><em>Wellness</em><br>Tech Club</h1>
+    <div class="hero-bar"></div>
+    <p class="tagline" data-i18n="s1_tagline">Where Academia Meets Industry</p>
+  </div>
+  <p class="scroll-hint" data-i18n="s1_scroll">scroll ↓</p>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="s2">
+  <div class="container">
     <div class="card">
       <div class="head-block" style="margin-bottom:0">
-        <p class="label anim" data-i18n="s2_label">About</p>
-        <div class="bar anim"></div>
+        <p class="label" data-i18n="s2_label">About</p>
+        <div class="bar"></div>
       </div>
-      <p class="pitch anim" data-i18n="s2_pitch">
-        Israel's <em>exclusive</em> student program<br>
-        bridging sport-tech talent<br>
-        with industry.
-      </p>
-      <div class="chips anim">
+      <p class="pitch" data-i18n="s2_pitch">Israel's <em>exclusive</em> student program<br>bridging sport-tech talent<br>with industry.</p>
+      <div class="chips">
         <span class="chip" data-i18n="s2_chip1">Sport-Tech</span>
         <span class="chip" data-i18n="s2_chip2">Well-Tech</span>
         <span class="chip" data-i18n="s2_chip3">Academia &rarr; Industry</span>
@@ -547,411 +560,478 @@
       </div>
     </div>
   </div>
+</section>
 
-  <!-- S3: OBJECTIVES -->
-  <div class="slide" id="s3">
-    <div class="head-block anim">
+<div class="section-divider"></div>
+
+<!-- OBJECTIVES -->
+<section id="s3">
+  <div class="container">
+    <div class="head-block">
       <p class="label" data-i18n="s3_label">Objectives</p>
       <h2 class="headline" data-i18n="s3_title">What We Stand For</h2>
       <div class="bar"></div>
     </div>
     <div class="obj-grid">
-      <div class="obj-card anim">
+      <div class="obj-card">
         <span class="obj-num">01</span>
-        <div>
-          <p class="obj-kw" data-i18n="s3_kw1">Innovation</p>
-          <p class="obj-sub" data-i18n="s3_sub1">Sport-Tech &amp; Well-Tech Entrepreneurship</p>
-        </div>
+        <div><p class="obj-kw" data-i18n="s3_kw1">Innovation</p><p class="obj-sub" data-i18n="s3_sub1">Sport-Tech &amp; Well-Tech Entrepreneurship</p></div>
       </div>
-      <div class="obj-card anim">
+      <div class="obj-card">
         <span class="obj-num">02</span>
-        <div>
-          <p class="obj-kw" data-i18n="s3_kw2">Industry Access</p>
-          <p class="obj-sub" data-i18n="s3_sub2">Leaders in Israel &amp; Worldwide</p>
-        </div>
+        <div><p class="obj-kw" data-i18n="s3_kw2">Industry Access</p><p class="obj-sub" data-i18n="s3_sub2">Leaders in Israel &amp; Worldwide</p></div>
       </div>
-      <div class="obj-card anim">
+      <div class="obj-card">
         <span class="obj-num">03</span>
-        <div>
-          <p class="obj-kw" data-i18n="s3_kw3">Collaboration</p>
-          <p class="obj-sub" data-i18n="s3_sub3">Companies, Orgs &amp; Global Events</p>
-        </div>
+        <div><p class="obj-kw" data-i18n="s3_kw3">Collaboration</p><p class="obj-sub" data-i18n="s3_sub3">Companies, Orgs &amp; Global Events</p></div>
       </div>
-      <div class="obj-card anim">
+      <div class="obj-card">
         <span class="obj-num">04</span>
-        <div>
-          <p class="obj-kw" data-i18n="s3_kw4">Development</p>
-          <p class="obj-sub" data-i18n="s3_sub4">Growing the Next Generation of Professionals</p>
-        </div>
+        <div><p class="obj-kw" data-i18n="s3_kw4">Development</p><p class="obj-sub" data-i18n="s3_sub4">Growing the Next Generation of Professionals</p></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- S4: WHAT WE DELIVER -->
-  <div class="slide" id="s4">
-    <div class="head-block anim">
+<div class="section-divider"></div>
+
+<!-- WHAT WE DELIVER -->
+<section id="s4">
+  <div class="container">
+    <div class="head-block">
       <p class="label" data-i18n="s4_label">Program Highlights</p>
       <h2 class="headline" data-i18n="s4_title">What We Deliver</h2>
       <div class="bar"></div>
     </div>
     <div class="hl-stack">
-      <div class="hl-row anim">
+      <div class="hl-row" onclick="toggleExpand(this)">
         <div class="hl-stat" data-i18n="s4_stat1">Speakers</div>
         <p class="hl-desc" data-i18n="s4_desc1">Founders, Executives &amp; Industry Leaders</p>
+        <span class="hl-chevron">▼</span>
+        <div class="hl-expand" data-i18n="s4_expand1"></div>
       </div>
-      <div class="hl-row anim">
+      <div class="hl-row" onclick="toggleExpand(this)">
         <div class="hl-stat" data-i18n="s4_stat2">Exposure</div>
         <p class="hl-desc" data-i18n="s4_desc2">Company Visits &amp; Industry Site Tours</p>
+        <span class="hl-chevron">▼</span>
+        <div class="hl-expand" data-i18n="s4_expand2"></div>
       </div>
-      <div class="hl-row anim">
+      <div class="hl-row" onclick="toggleExpand(this)">
         <div class="hl-stat" data-i18n="s4_stat3">Flagship</div>
-        <p class="hl-desc" data-i18n="s4_desc3">An annual flagship event featuring an applied project or innovation initiative connecting students</p>
+        <p class="hl-desc" data-i18n="s4_desc3">An annual flagship event connecting students with industry</p>
+        <span class="hl-chevron">▼</span>
+        <div class="hl-expand" data-i18n="s4_expand3"></div>
       </div>
-      <div class="hl-row anim">
+      <div class="hl-row" onclick="toggleExpand(this)">
         <div class="hl-stat" data-i18n="s4_stat4">Network</div>
         <p class="hl-desc" data-i18n="s4_desc4">Direct Access to Industry Decision-Makers</p>
+        <span class="hl-chevron">▼</span>
+        <div class="hl-expand" data-i18n="s4_expand4"></div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- S5: COMMUNITY -->
-  <div class="slide" id="s5">
-    <p class="label anim" data-i18n="s5_label">Our Community</p>
-    <h2 class="headline anim" data-i18n="s5_title">Scale &amp; Reach</h2>
-    <div class="bar anim" style="margin: 0 auto;"></div>
-    <p class="comm-sub anim" data-i18n="s5_sub">
-      Operating under the Reichman University Student Union —<br>
-      thousands of students, all faculties, one ecosystem.
-    </p>
-    <div class="stats-row anim">
-      <div class="stat">
-        <div class="stat-n">50+</div>
-        <div class="stat-l" data-i18n="s5_l1">Active Students</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">100+</div>
-        <div class="stat-l" data-i18n="s5_l2">Community Members</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">10+</div>
-        <div class="stat-l" data-i18n="s5_l3">Sessions / Cycle</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">2×</div>
-        <div class="stat-l" data-i18n="s5_l4">Per Academic Year</div>
-      </div>
+<div class="section-divider"></div>
+
+<!-- COMMUNITY -->
+<section id="s5">
+  <div class="container">
+    <p class="label" data-i18n="s5_label">Our Community</p>
+    <h2 class="headline" data-i18n="s5_title" style="margin-top:10px;">Scale &amp; Reach</h2>
+    <div class="bar" style="margin:10px auto 0;"></div>
+    <p class="comm-sub" data-i18n="s5_sub">Operating under the Reichman University Student Union —<br>thousands of students, all faculties, one ecosystem.</p>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">50+</div><div class="stat-l" data-i18n="s5_l1">Active Students</div></div>
+      <div class="stat"><div class="stat-n">100+</div><div class="stat-l" data-i18n="s5_l2">Community Members</div></div>
+      <div class="stat"><div class="stat-n">10+</div><div class="stat-l" data-i18n="s5_l3">Sessions / Cycle</div></div>
+      <div class="stat"><div class="stat-n">2×</div><div class="stat-l" data-i18n="s5_l4">Per Academic Year</div></div>
     </div>
   </div>
+</section>
 
-  <!-- S6: INDUSTRY -->
-  <div class="slide" id="s6">
-    <div class="head-block anim">
+<div class="section-divider"></div>
+
+<!-- PARTNERS -->
+<section id="s6">
+  <div class="container">
+    <div class="head-block">
       <p class="label" data-i18n="s6_label">Industry Connections</p>
       <h2 class="headline" data-i18n="s6_title">Our Partners</h2>
       <div class="bar"></div>
     </div>
     <div class="co-grid">
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_wsc.png" alt="WSC Sports"></div>
-        <p class="co-name">WSC Sports</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_365scores.png" alt="365Scores"></div>
-        <p class="co-name">365Scores</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_pixellot.png" alt="Pixellot"></div>
-        <p class="co-name">Pixellot</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_playermaker.png" alt="PlayerMaker"></div>
-        <p class="co-name">PlayerMaker</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_liveu.png" alt="LiveU"></div>
-        <p class="co-name">LiveU</p>
-      </div>
-      <div class="co-card anim">
-        <p class="co-name" style="font-size:17px;letter-spacing:1px;color:var(--white);margin:auto 0;">Welltech Ventures</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_reflect.png" alt="Reflect"></div>
-        <p class="co-name">Reflect</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_colosseum.png" alt="Colosseum"></div>
-        <p class="co-name">Colosseum</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_blazepod.png" alt="Blazepod"></div>
-        <p class="co-name">Blazepod</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_playsight.png" alt="Playsight"></div>
-        <p class="co-name">Playsight</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_onescrin.png" alt="OneScrin"></div>
-        <p class="co-name">OneScrin</p>
-      </div>
-      <div class="co-card anim">
-        <div class="co-logo"><img src="logo_arbox.png" alt="Arbox"></div>
-        <p class="co-name">Arbox</p>
-      </div>
+      <div class="co-card" onclick="openModal('co','wsc')"><div class="co-logo"><img src="logo_wsc.png" alt="WSC Sports"></div><p class="co-name">WSC Sports</p></div>
+      <div class="co-card" onclick="openModal('co','scores365')"><div class="co-logo"><img src="logo_365scores.png" alt="365Scores"></div><p class="co-name">365Scores</p></div>
+      <div class="co-card" onclick="openModal('co','pixellot')"><div class="co-logo"><img src="logo_pixellot.png" alt="Pixellot"></div><p class="co-name">Pixellot</p></div>
+      <div class="co-card" onclick="openModal('co','playermaker')"><div class="co-logo"><img src="logo_playermaker.png" alt="PlayerMaker"></div><p class="co-name">PlayerMaker</p></div>
+      <div class="co-card" onclick="openModal('co','liveu')"><div class="co-logo"><img src="logo_liveu.png" alt="LiveU"></div><p class="co-name">LiveU</p></div>
+      <div class="co-card" onclick="openModal('co','welltech')"><div class="co-logo"><img src="logo_welltech.png" alt="Welltech Ventures" style="filter:invert(1) brightness(2); max-height:56px; max-width:140px;"></div><p class="co-name">Welltech Ventures</p></div>
+      <div class="co-card" onclick="openModal('co','reflect')"><div class="co-logo"><img src="logo_reflect.png" alt="Reflect"></div><p class="co-name">Reflect</p></div>
+      <div class="co-card" onclick="openModal('co','colosseum')"><div class="co-logo"><img src="logo_colosseum.png" alt="Colosseum"></div><p class="co-name">Colosseum</p></div>
+      <div class="co-card" onclick="openModal('co','blazepod')"><div class="co-logo"><img src="logo_blazepod.png" alt="Blazepod"></div><p class="co-name">Blazepod</p></div>
+      <div class="co-card" onclick="openModal('co','playsight')"><div class="co-logo"><img src="logo_playsight.png" alt="Playsight"></div><p class="co-name">Playsight</p></div>
+      <div class="co-card" onclick="openModal('co','onescrin')"><div class="co-logo"><img src="logo_onescrin.png" alt="OneScrin"></div><p class="co-name">OneScrin</p></div>
+      <div class="co-card" onclick="openModal('co','arbox')"><div class="co-logo"><img src="logo_arbox.png" alt="Arbox"></div><p class="co-name">Arbox</p></div>
+      <div class="co-card" onclick="openModal('co','binenfit')"><div class="co-logo"><img src="logo_binenfit.png" alt="Binenfit"></div><p class="co-name">Binenfit</p></div>
+      <div class="co-card" onclick="openModal('co','easycoach')"><div class="co-logo"><img src="logo_easycoach.svg" alt="EasyCoach"></div><p class="co-name">EasyCoach</p></div>
+      <div class="co-card" onclick="openModal('co','ibrain')"><div class="co-logo"><img src="logo_ibrain.svg" alt="i-BrainTech"></div><p class="co-name">i-BrainTech</p></div>
     </div>
   </div>
+</section>
 
-  <!-- S7: TEAM -->
-  <div class="slide" id="s7">
-    <div class="head-block anim">
+<div class="section-divider"></div>
+
+<!-- TEAM -->
+<section id="s7">
+  <div class="container">
+    <div class="head-block">
       <p class="label" data-i18n="s7_label">Club Management</p>
       <h2 class="headline" data-i18n="s7_title">The Team</h2>
       <div class="bar"></div>
     </div>
     <div class="team-grid">
-      <div class="member anim">
+      <div class="member" onclick="openModal('member','yoad')">
         <div class="avatar"><img src="IMG_3706 2.PNG" alt="Yoad Yankowitz"></div>
-        <p class="m-name">Yoad Yankowitz</p>
+        <p class="m-name" data-i18n="name_yoad">Yoad Yankowitz</p>
+        <p class="m-role" data-i18n="role_founder">Founder &amp; Chairman</p>
       </div>
-      <div class="member anim">
-        <div class="avatar"><img src="photo_2.png" alt="Ben Meiri"></div>
-        <p class="m-name">Ben Meiri</p>
+      <div class="member" onclick="openModal('member','maya')">
+        <div class="avatar" style="background:#c0c4c4;"><img src="maya_grey.png" alt="Maya Prashker"></div>
+        <p class="m-name" data-i18n="name_maya">Maya Prashker</p>
+        <p class="m-role" data-i18n="role_social_mgr">Social Media &amp; Content Manager</p>
       </div>
-      <div class="member anim">
-        <div class="avatar" style="background:#ffffff;"><img src="photo_3_white.png" alt="Carmel Helman"></div>
-        <p class="m-name">Carmel Helman</p>
+      <div class="member" onclick="openModal('member','yarden')">
+        <div class="avatar" style="background:#c0c4c4;"><img src="yarden_grey.png" alt="Yarden Safran"></div>
+        <p class="m-name" data-i18n="name_yarden">Yarden Safran</p>
+        <p class="m-role" data-i18n="role_partnerships">Partnerships &amp; Networking Manager</p>
       </div>
-      <div class="member anim">
-        <div class="avatar" style="background:#ffffff;"><img src="photo_4_white.png" alt="Maya Prashker"></div>
-        <p class="m-name">Maya Prashker</p>
+      <div class="member" onclick="openModal('member','alon')">
+        <div class="avatar" style="background:#c0c4c4;"><img src="alon_grey.png" alt="Alon Marom"></div>
+        <p class="m-name" data-i18n="name_alon">Alon Marom</p>
+        <p class="m-role" data-i18n="role_community">Community Manager</p>
+      </div>
+      <div class="member" onclick="openModal('member','mia')">
+        <div class="avatar" style="background:#c0c4c4;"><img src="mia_grey.png" alt="Mia Nadel"></div>
+        <p class="m-name" data-i18n="name_mia">Mia Nadel</p>
+        <p class="m-role" data-i18n="role_project_mgr">Marketing &amp; Project Manager</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- S8: THANK YOU -->
-  <div class="slide" id="s8" style="text-align:center;">
-    <div style="position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(37,144,240,0.13) 0%,transparent 68%);pointer-events:none;"></div>
-    <p class="anim" data-i18n="s8_club" style="font-family:var(--fc);font-size:13px;font-weight:600;letter-spacing:9px;text-transform:uppercase;color:var(--blue3);margin-bottom:22px;">Sport Tech &amp; Wellness Tech Club</p>
-    <h1 class="anim" data-i18n="s8_h1" style="font-family:var(--fd);font-size:clamp(72px,11vw,140px);line-height:0.9;letter-spacing:3px;color:var(--white);">Thank<br><em style="font-style:normal;color:var(--blue2);">You</em></h1>
-    <div class="anim" style="width:68px;height:3px;background:linear-gradient(90deg,var(--blue2),var(--cyan));border-radius:2px;margin:28px auto 26px;"></div>
-    <p class="anim" data-i18n="s8_uni" style="font-family:var(--fc);font-size:clamp(13px,1.6vw,18px);font-weight:400;letter-spacing:6px;text-transform:uppercase;color:var(--mute);">Reichman University</p>
+<footer class="site-footer">
+  <div class="footer-main">
+    <!-- Brand -->
+    <div>
+      <div class="footer-brand-name">Sport<em>Tech</em> &amp;<br>Wellness Tech Club</div>
+      <div class="footer-brand-sub" data-i18n="s1_uni">Reichman University</div>
+      <p class="footer-desc" data-i18n="footer_desc">Israel's student program bridging sport-tech and wellness-tech talent with the industry — operating under the Reichman University Student Union.</p>
+    </div>
+    <!-- Nav -->
+    <div>
+      <div class="footer-col-title" data-i18n="footer_nav">Navigate</div>
+      <div class="footer-nav-links">
+        <a href="#s2" data-i18n="nav_about">About</a>
+        <a href="#s3" data-i18n="nav_program">Program</a>
+        <a href="#s5" data-i18n="nav_community">Community</a>
+        <a href="#s6" data-i18n="nav_partners">Partners</a>
+        <a href="#s7" data-i18n="nav_team">Team</a>
+      </div>
+    </div>
+    <!-- Contact -->
+    <div>
+      <div class="footer-col-title" data-i18n="footer_contact">Get in Touch</div>
+      <div class="footer-contact-links">
+        <a href="https://www.instagram.com/sportech_ru" target="_blank" rel="noopener">
+          <span class="footer-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </span>
+          @sportech_ru
+        </a>
+        <a href="https://www.linkedin.com/company/108749100/" target="_blank" rel="noopener">
+          <span class="footer-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </span>
+          RU Sport Tech &amp; Wellness Club
+        </a>
+        <a href="mailto:sportechwellness@gmail.com">
+          <span class="footer-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          </span>
+          sportechwellness@gmail.com
+        </a>
+      </div>
+    </div>
   </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-i18n="footer_copy">© 2025 Sport Tech &amp; Wellness Tech Club · Reichman University</span>
+  </div>
+</footer>
 
-</div>
-
-<!-- NAV -->
-<div class="progress" id="progress"></div>
-<div class="nav-dots" id="navDots"></div>
-<div class="counter" id="counter"></div>
-<div class="nav-btns">
-  <button class="nav-btn" id="btnPrev">&#8592;</button>
-  <button class="nav-btn" id="btnNext">&#8594;</button>
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-card" id="modalCard">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalContent"></div>
+  </div>
 </div>
 
 <script>
-  /* ── TRANSLATIONS ── */
   const T = {
     en: {
-      s1_uni:    'Reichman University',
-      s1_h1:     'Sport<br><span class="amp">Tech &amp;</span><br><em>Wellness</em><br>Tech Club',
-      s1_tagline:'Where Academia Meets Industry',
-
-      s2_label:  'About',
-      s2_pitch:  'Israel\'s <em>exclusive</em> student program<br>bridging sport-tech talent<br>with industry.',
-      s2_chip1:  'Sport-Tech',
-      s2_chip2:  'Well-Tech',
-      s2_chip3:  'Academia &rarr; Industry',
-      s2_chip4:  'Reichman University',
-
-      s3_label:  'Objectives',
-      s3_title:  'What We Stand For',
-      s3_kw1:    'Innovation',
-      s3_sub1:   'Sport-Tech &amp; Well-Tech Entrepreneurship',
-      s3_kw2:    'Industry Access',
-      s3_sub2:   'Leaders in Israel &amp; Worldwide',
-      s3_kw3:    'Collaboration',
-      s3_sub3:   'Companies, Orgs &amp; Global Events',
-      s3_kw4:    'Development',
-      s3_sub4:   'Growing the Next Generation of Professionals',
-
-      s4_label:  'Program Highlights',
-      s4_title:  'What We Deliver',
-      s4_stat1:  'Speakers',
-      s4_desc1:  'Founders, Executives &amp; Industry Leaders',
-      s4_stat2:  'Exposure',
-      s4_desc2:  'Company Visits &amp; Industry Site Tours',
-      s4_stat3:  'Flagship',
-      s4_desc3:  'An annual flagship event featuring an applied project or innovation initiative connecting students',
-      s4_stat4:  'Network',
-      s4_desc4:  'Direct Access to Industry Decision-Makers',
-
-      s5_label:  'Our Community',
-      s5_title:  'Scale &amp; Reach',
-      s5_sub:    'Operating under the Reichman University Student Union —<br>thousands of students, all faculties, one ecosystem.',
-      s5_l1:     'Active Students',
-      s5_l2:     'Community Members',
-      s5_l3:     'Sessions / Cycle',
-      s5_l4:     'Per Academic Year',
-
-      s6_label:  'Industry Connections',
-      s6_title:  'Our Partners',
-
-      s7_label:  'Club Management',
-      s7_title:  'The Team',
-
-      s8_club:   'Sport Tech &amp; Wellness Tech Club',
-      s8_h1:     'Thank<br><em style="font-style:normal;color:var(--blue2);">You</em>',
-      s8_uni:    'Reichman University',
+      nav_about:'About', nav_program:'Program', nav_community:'Community', nav_partners:'Partners', nav_team:'Team',
+      s1_uni:'Reichman University', s1_union:'Student Union',
+      s1_h1:'Sport<br><span class="amp">Tech &amp;</span><br><em>Wellness</em><br>Tech Club',
+      s1_tagline:'Where Academia Meets Industry', s1_scroll:'scroll ↓',
+      s2_label:'About',
+      s2_pitch:'Israel\'s <em>exclusive</em> student program<br>bridging sport-tech talent<br>with industry.',
+      s2_chip1:'Sport-Tech', s2_chip2:'Well-Tech', s2_chip3:'Academia &rarr; Industry', s2_chip4:'Reichman University',
+      s3_label:'Objectives', s3_title:'What We Stand For',
+      s3_kw1:'Innovation', s3_sub1:'Sport-Tech &amp; Well-Tech Entrepreneurship',
+      s3_kw2:'Industry Access', s3_sub2:'Leaders in Israel &amp; Worldwide',
+      s3_kw3:'Collaboration', s3_sub3:'Companies, Orgs &amp; Global Events',
+      s3_kw4:'Development', s3_sub4:'Growing the Next Generation of Professionals',
+      s4_label:'Program Highlights', s4_title:'What We Deliver',
+      s4_stat1:'Speakers', s4_desc1:'Founders, Executives &amp; Industry Leaders',
+      s4_expand1:'Guest lectures by founders, executives, and industry leaders in sport-tech and wellness-tech. Each session goes deep into company story, product journey, and real-world insights for students entering the industry.',
+      s4_stat2:'Exposure', s4_desc2:'Company Visits &amp; Industry Site Tours',
+      s4_expand2:'Behind-the-scenes company visits and industry site tours — students step inside the offices and working environments of the companies shaping sport and wellness technology.',
+      s4_stat3:'Flagship', s4_desc3:'An annual flagship event connecting students with industry',
+      s4_expand3:'An annual culminating event featuring a student-led applied project or innovation challenge, connecting students directly with industry partners in a real-world setting.',
+      s4_stat4:'Network', s4_desc4:'Direct Access to Industry Decision-Makers',
+      s4_expand4:'A growing community of sport-tech professionals, founders, and decision-makers — opening doors to internships, career paths, and collaborative opportunities.',
+      s5_label:'Our Community', s5_title:'Scale &amp; Reach',
+      s5_sub:'Operating under the Reichman University Student Union —<br>thousands of students, all faculties, one ecosystem.',
+      s5_l1:'Active Students', s5_l2:'Community Members', s5_l3:'Sessions', s5_l4:'Cycles',
+      s6_label:'Industry Connections', s6_title:'Our Partners',
+      s7_label:'Club Management', s7_title:'The Team',
+      name_yoad:'Yoad Yankowitz', name_maya:'Maya Prashker', name_yarden:'Yarden Safran', name_alon:'Alon Marom', name_mia:'Mia Nadel',
+      role_founder:'Founder & Chairman', role_social_mgr:'Social Media & Content Manager', role_partnerships:'Partnerships & Networking Manager', role_community:'Community Manager', role_project_mgr:'Marketing & Project Manager',
+      s8_club:'Sport Tech &amp; Wellness Tech Club', s8_h1:'Thank<br><em>You</em>', s8_uni:'Reichman University',
+      footer_desc:"Israel's student program bridging sport-tech and wellness-tech talent with the industry — operating under the Reichman University Student Union.",
+      footer_nav:'Navigate', footer_contact:'Get in Touch',
+      footer_copy:'© 2025 Sport Tech &amp; Wellness Tech Club · Reichman University',
+      modal_speaker:'Speaker', modal_visit:'Visit Website', modal_session:'Our Session', modal_linkedin:'LinkedIn Profile',
+      co: {
+        wsc:         { name:'WSC Sports',        desc:'AI platform that uses computer vision to automatically generate personalized sports highlights and content at scale. Trusted by leading broadcasters and sports organizations worldwide.' },
+        scores365:   { name:'365Scores',         desc:'Sports data platform delivering real-time scores, stats, and personalized notifications to millions of fans worldwide. A global leader in sports media technology, headquartered in Israel.' },
+        pixellot:    { name:'Pixellot',          desc:'AI-powered automated sports filming platform that produces broadcast-quality video without camera crews. Used by thousands of venues worldwide to capture, stream, and analyze sports events.' },
+        playermaker: { name:'PlayerMaker',       desc:'Wearable IoT sensor platform for football players that tracks movement and performance in real time. Provides coaches and clubs with data-driven insights to improve player development and prevent injuries.' },
+        liveu:       { name:'LiveU',             desc:'Global leader in live video transmission technology used by broadcasters, news teams, and sports organizations. Enables reliable, high-quality live streaming from any location in the world.' },
+        welltech:    { name:'Welltech Ventures', desc:'Venture capital fund dedicated to investing in health and wellness technology startups. Identifies and backs early-stage companies building the future of preventive health and personal wellbeing.' },
+        reflect:     { name:'Reflect',           desc:'Personal development app that uses color-coded self-feedback to help users build self-awareness, track mood, and improve focus and performance over time.' },
+        colosseum:   { name:'Colosseum',         desc:'Sports innovation hub in Israel connecting startups, enterprises, and organizations shaping the future of sport. A physical and community platform that accelerates collaboration across the sports-tech ecosystem.' },
+        blazepod:    { name:'BlazePod',          desc:'Interactive reaction training system using smart light pods to develop athletic performance, agility, and cognitive speed. Used by professional athletes, sports teams, and training facilities worldwide.' },
+        playsight:   { name:'PlaySight',         desc:'AI-powered smart camera platform that enables live streaming and advanced performance analysis for sports teams and venues. Turns any facility into a professional broadcast and analytics hub.' },
+        onescrin:    { name:'OneScrin',          desc:'AI-powered visual coaching platform that provides real-time feedback on screen usage habits in school and workplace environments. Helping individuals and organizations build healthier digital behaviors.' },
+        arbox:       { name:'Arbox',             desc:'All-in-one management platform for gyms, fitness studios, and wellness businesses. Handles memberships, scheduling, payments, and client communication in a single system.' },
+        binenfit:    { name:'Binenfit',          desc:'Boutique fitness studio community in Tel Aviv offering functional training, pilates reformer, yoga, and high-intensity classes. Built around the idea that fitness is a social experience — members join a family, not just a gym.' },
+        easycoach:   { name:'EasyCoach',         desc:'Unified software platform for football organizations that integrates operations, coaching, payments, medical, scouting, and analytics in one system. Designed for clubs, academies, and national federations to manage their entire ecosystem.' },
+        ibrain:      { name:'i-BrainTech',       desc:'Neuroscience-based visualization training platform that uses brain impulses to control a video game, enabling athletes to improve mental performance, recover from injuries, and develop cognitive and tactical skills without physical strain.' },
+      },
+      members: {
+        yoad:   { name:'Yoad Yankowitz', role:'Founder & Chairman', bio:'Law & Business Administration student (3rd year) at Reichman University. A lifelong sports enthusiast who grew up connecting sport with community and culture, and developed a parallel passion for technology and entrepreneurship. Founded the Sport Tech & Wellness Club to give students direct access to the people and companies shaping the future of the industry.' },
+        yarden: { name:'Yarden Safran',  role:'Partnerships & Networking Manager', bio:'Business Administration & Data student (3rd year) at Reichman University, 25, from Tel Aviv. He grew up on the tennis courts and played throughout his childhood, but his love of sport was always broader — from football and basketball to Formula 1. He sees sport-tech as a great opportunity for students to connect their technical and business skills with a field they genuinely love, while taking part in the growth of Israel\'s sport-tech and wellness ecosystem, which already produces technologies and companies with global impact.' },
+        alon:   { name:'Alon Marom',     role:'Community Manager', bio:'' },
+        maya:   { name:'Maya Prashker',  role:'Social Media & Content Manager', bio:'Business Administration & Data student (3rd year) at Reichman University. Passionate about sport, technology, and building communities that create real-world impact. Responsible for the club\'s social presence and content.' },
+        mia:    { name:'Mia Nadel',      role:'Marketing & Project Manager', bio:'Psychology & Business Administration student (3rd year) at Reichman University, 25, from Tel Aviv. A lifelong dancer who qualified as a fitness and Pilates instructor during her military service — a profession she sees as a way to impact people through movement. She believes the fitness and wellness world is in the middle of a revolution, and it was the meeting point of sport, technology and innovation that drew her to sport-tech. At the club she wants to open the door to the industry for students, and connect them with the people, ideas and companies shaping it.' },
+      },
     },
     he: {
-      s1_uni:    'אוניברסיטת רייכמן',
-      s1_h1:     'מועדון<br><span class="amp">הספורט-טק</span><br><em>והוולנס-טק</em>',
-      s1_tagline:'בין אקדמיה לתעשייה',
-
-      s2_label:  'אודות',
-      s2_pitch:  'התוכנית הסטודנטיאלית <em>הבלעדית</em> בישראל<br>המחברת כישרונות ספורט-טק<br>לתעשייה.',
-      s2_chip1:  'ספורט-טק',
-      s2_chip2:  'וולנס-טק',
-      s2_chip3:  'אקדמיה &rarr; תעשייה',
-      s2_chip4:  'אוניברסיטת רייכמן',
-
-      s3_label:  'יעדים',
-      s3_title:  'מה אנחנו מייצגים',
-      s3_kw1:    'חדשנות',
-      s3_sub1:   'יזמות בספורט-טק ווולנס-טק',
-      s3_kw2:    'גישה לתעשייה',
-      s3_sub2:   'מובילים בישראל ובעולם',
-      s3_kw3:    'שיתוף פעולה',
-      s3_sub3:   'חברות, ארגונים ואירועים גלובליים',
-      s3_kw4:    'פיתוח מקצועי',
-      s3_sub4:   'הכשרת הדור הבא של אנשי המקצוע',
-
-      s4_label:  'נקודות מרכזיות',
-      s4_title:  'מה אנחנו מציעים',
-      s4_stat1:  'הרצאות',
-      s4_desc1:  'מייסדים, מנהלים ומובילי תעשייה',
-      s4_stat2:  'חשיפה',
-      s4_desc2:  'ביקורי חברות וסיורי תעשייה',
-      s4_stat3:  'אירוע דגל',
-      s4_desc3:  'אירוע שיא שנתי הכולל פרויקט יישומי או יוזמת חדשנות',
-      s4_stat4:  'נטוורקינג',
-      s4_desc4:  'גישה ישירה למקבלי החלטות בתעשייה',
-
-      s5_label:  'הקהילה שלנו',
-      s5_title:  'היקף והשפעה',
-      s5_sub:    'פועלים תחת אגודת הסטודנטים, אוניברסיטת רייכמן —<br>אלפי סטודנטים, כלל הפקולטות, אקוסיסטם אחד.',
-      s5_l1:     'סטודנטים פעילים',
-      s5_l2:     'חברי קהילה',
-      s5_l3:     'מפגשים / מחזור',
-      s5_l4:     'לשנה אקדמית',
-
-      s6_label:  'קשרי תעשייה',
-      s6_title:  'השותפים שלנו',
-
-      s7_label:  'הנהלת המועדון',
-      s7_title:  'הצוות',
-
-      s8_club:   'מועדון הספורט-טק והוולנס-טק',
-      s8_h1:     '<em style="font-style:normal;color:var(--blue2);">תודה</em>',
-      s8_uni:    'אוניברסיטת רייכמן',
+      nav_about:'אודות', nav_program:'תוכנית', nav_community:'קהילה', nav_partners:'שותפים', nav_team:'צוות',
+      s1_uni:'אוניברסיטת רייכמן', s1_union:'אגודת הסטודנטים',
+      s1_h1:'מועדון<br><span class="amp">הספורט-טק</span><br><em>והוולנס-טק</em>',
+      s1_tagline:'בין אקדמיה לתעשייה', s1_scroll:'גלול ↓',
+      s2_label:'אודות',
+      s2_pitch:'התוכנית הסטודנטיאלית <em>הבלעדית</em> בישראל<br>המחברת כישרונות ספורט-טק<br>לתעשייה.',
+      s2_chip1:'ספורט-טק', s2_chip2:'וולנס-טק', s2_chip3:'אקדמיה &rarr; תעשייה', s2_chip4:'אוניברסיטת רייכמן',
+      s3_label:'יעדים', s3_title:'מה אנחנו מייצגים',
+      s3_kw1:'חדשנות', s3_sub1:'יזמות בספורט-טק ווולנס-טק',
+      s3_kw2:'גישה לתעשייה', s3_sub2:'מובילים בישראל ובעולם',
+      s3_kw3:'שיתוף פעולה', s3_sub3:'חברות, ארגונים ואירועים גלובליים',
+      s3_kw4:'פיתוח מקצועי', s3_sub4:'הכשרת הדור הבא של אנשי המקצוע',
+      s4_label:'נקודות מרכזיות', s4_title:'מה אנחנו מציעים',
+      s4_stat1:'הרצאות', s4_desc1:'מייסדים, מנהלים ומובילי תעשייה',
+      s4_expand1:'הרצאות אורח של מייסדים, מנהלים ומובילי תעשייה בספורט-טק ווולנס-טק. כל מפגש צולל לעומק לסיפור החברה, מסע המוצר ותובנות מהשטח לסטודנטים הנכנסים לתעשייה.',
+      s4_stat2:'חשיפה', s4_desc2:'ביקורי חברות וסיורי תעשייה',
+      s4_expand2:'ביקורי חברות מאחורי הקלעים וסיורי תעשייה — הסטודנטים נכנסים למשרדים ולסביבות העבודה של החברות המעצבות את טכנולוגיית הספורט והוולנס.',
+      s4_stat3:'אירוע דגל', s4_desc3:'אירוע שיא שנתי המחבר סטודנטים לתעשייה',
+      s4_expand3:'אירוע שיא שנתי הכולל פרויקט סטודנטיאלי יישומי או אתגר חדשנות, המחבר סטודנטים ישירות עם שותפי תעשייה בסביבה אמיתית.',
+      s4_stat4:'נטוורקינג', s4_desc4:'גישה ישירה למקבלי החלטות בתעשייה',
+      s4_expand4:'קהילה גדלה של אנשי מקצוע, מייסדים ומקבלי החלטות בספורט-טק — פותחת דלתות לסטאז\'ים, מסלולי קריירה והזדמנויות שיתוף פעולה.',
+      s5_label:'הקהילה שלנו', s5_title:'היקף והשפעה',
+      s5_sub:'פועלים תחת אגודת הסטודנטים, אוניברסיטת רייכמן —<br>אלפי סטודנטים, כלל הפקולטות, אקוסיסטם אחד.',
+      s5_l1:'סטודנטים פעילים', s5_l2:'חברי קהילה', s5_l3:'מפגשים', s5_l4:'מחזורים',
+      s6_label:'קשרי תעשייה', s6_title:'השותפים שלנו',
+      s7_label:'הנהלת המועדון', s7_title:'הצוות',
+      name_yoad:'יועד ינקוביץ', name_maya:'מאיה פרשקר', name_yarden:'ירדן ספרן', name_alon:'אלון מרום', name_mia:'מיה נדל',
+      role_founder:'מייסד ויו״ר', role_social_mgr:'מנהלת סושיאל ותוכן', role_partnerships:'מנהל שותפויות וקשרי חברות', role_community:'מנהל קהילה', role_project_mgr:'מנהלת שיווק ופרויקטים',
+      s8_club:'מועדון הספורט-טק והוולנס-טק', s8_h1:'<em>תודה</em>', s8_uni:'אוניברסיטת רייכמן',
+      footer_desc:'התוכנית הסטודנטיאלית המחברת כישרונות ספורט-טק ווולנס-טק לתעשייה — פועלת תחת אגודת הסטודנטים, אוניברסיטת רייכמן.',
+      footer_nav:'ניווט', footer_contact:'צור קשר',
+      footer_copy:'© 2025 מועדון הספורט-טק והוולנס-טק · אוניברסיטת רייכמן',
+      modal_speaker:'דובר/ת', modal_visit:'לאתר החברה', modal_session:'המפגש שלנו', modal_linkedin:'פרופיל LinkedIn',
+      co: {
+        wsc:         { name:'WSC Sports',        desc:'פלטפורמת AI המשתמשת בראייה ממוחשבת ליצירה אוטומטית של תקצירי ספורט מותאמים אישית בקנה מידה גדול. מהימנה על-ידי גופי שידור וארגוני ספורט מובילים ברחבי העולם.' },
+        scores365:   { name:'365Scores',         desc:'פלטפורמת ספורט-דאטה המספקת ניקוד בזמן אמת, סטטיסטיקות ועדכונים מותאמים אישית למיליוני אוהדים ברחבי העולם. מובילה גלובלית בטכנולוגיית מדיה ספורט, ממוקמת בישראל.' },
+        pixellot:    { name:'Pixellot',          desc:'פלטפורמת צילום ספורט אוטומטית מבוססת AI המייצרת וידאו באיכות שידור ללא צוותי צלמים. בשימוש אלפי מתקנים ברחבי העולם לצילום, שידור וניתוח אירועי ספורט.' },
+        playermaker: { name:'PlayerMaker',       desc:'פלטפורמת חיישני IoT ניתנת ללבישה לשחקני כדורגל, עוקבת אחר תנועה וביצועים בזמן אמת. מספקת למאמנים ולמועדונים תובנות מבוססות נתונים לשיפור פיתוח השחקנים ומניעת פציעות.' },
+        liveu:       { name:'LiveU',             desc:'מוביל עולמי בטכנולוגיית שידור וידאו חי, בשימוש גופי שידור, צוותי חדשות וארגוני ספורט. מאפשר שידור חי אמין ואיכותי מכל מקום בעולם.' },
+        welltech:    { name:'Welltech Ventures', desc:'קרן הון-סיכון ייעודית המשקיעה בסטארט-אפים בתחום טכנולוגיית הבריאות והוולנס. מזהה ומממנת חברות בשלבים מוקדמים הבונות את עתיד הבריאות המונעת ורווחה אישית.' },
+        reflect:     { name:'Reflect',           desc:'אפליקציית פיתוח אישי המשתמשת במשוב עצמי קוד-צבעוני לעזרת המשתמשים לבנות מודעות עצמית, לעקוב אחר מצב הרוח ולשפר ריכוז וביצועים לאורך זמן.' },
+        colosseum:   { name:'Colosseum',         desc:'מרכז חדשנות ספורט בישראל המחבר סטארט-אפים, חברות וארגונים המעצבים את עתיד הספורט. פלטפורמה פיזיקלית וקהילתית המאיצה שיתוף פעולה בתוך מערכת האקולוגית של ספורט-טק.' },
+        blazepod:    { name:'BlazePod',          desc:'מערכת אימון תגובה אינטראקטיבית המשתמשת בכפפות אור חכמות לפיתוח ביצועים אתלטיים, זריזות ומהירות קוגניטיבית. בשימוש ספורטאים מקצוענים, קבוצות ספורט ומתקני אימון ברחבי העולם.' },
+        playsight:   { name:'PlaySight',         desc:'פלטפורמת מצלמות חכמות מבוססת AI המאפשרת שידור חי וניתוח ביצועים מתקדם לקבוצות ספורט ומתקנים. הופכת כל מתקן למרכז שידור ואנליטיקה מקצועי.' },
+        onescrin:    { name:'OneScrin',          desc:'פלטפורמת אימון ויזואלי מבוססת AI המספקת משוב בזמן אמת על הרגלי שימוש במסך בסביבות בית-ספר ועבודה. עוזרת לאנשים וארגונים לבנות התנהגויות דיגיטליות בריאות יותר.' },
+        arbox:       { name:'Arbox',             desc:'פלטפורמת ניהול כל-בחד לחדרי כושר, סטודיות כושר ועסקי וולנס. מטפלת במנויים, לוח זמנים, תשלומים ותקשורת עם לקוחות במערכת אחת.' },
+        binenfit:    { name:'Binenfit',          desc:'קהילת סטודיו כושר בוטיק בתל אביב המציעה אימון פונקציונלי, פילאטיס רפורמר, יוגה ואימונים עצימים. בנויה סביב הרעיון שכושר הוא חווייה חברתית — חברים מצטרפים למשפחה, לא רק לחדר כושר.' },
+        easycoach:   { name:'EasyCoach',         desc:'פלטפורמת תוכנה מאוחדת לארגוני כדורגל, המשלבת ניהול, אימון, תשלומים, רפואה, סקאוטינג ואנליטיקה במערכת אחת. מיועדת למועדונים, אקדמיות ופדרציות לאומיות לניהול מלא של הארגון.' },
+        ibrain:      { name:'i-BrainTech',       desc:'פלטפורמת אימון ויזואליזציה מבוססת נוירו-מדע המשתמשת בגלי מוח לשליטה במשחק וידאו, ומאפשרת לספורטאים לשפר ביצועים מנטליים, להתאושש מפציעות ולפתח כישורים קוגניטיביים ותקטיים ללא מאמץ פיזי.' },
+      },
+      members: {
+        yoad:   { name:'יועד ינקוביץ',  role:'מייסד ויו״ר', bio:'סטודנט שנה ג׳ למשפטים וניהול עסקים באוניברסיטת רייכמן. אוהב ספורט מאז ומתמיד, שגדל על החיבור בין ספורט לקהילה ופיתח תשוקה מקבילה לטכנולוגיה ויזמות. ייסד את מועדון הספורט-טק והוולנס-טק כדי לאפשר לסטודנטים גישה ישירה לאנשים ולחברות המעצבים את עתיד התעשייה.' },
+        yarden: { name:'ירדן ספרן',     role:'מנהל שותפויות וקשרי חברות', bio:'סטודנט שנה ג׳ לניהול עסקים ודאטה באוניברסיטת רייכמן, בן 25 מתל אביב. גדל על מגרשי הטניס ושיחק לאורך כל הילדות, אך האהבה שלו לספורט תמיד הייתה רחבה יותר — מכדורגל וכדורסל ועד פורמולה 1. רואה בעולם הספורט-טק הזדמנות מעולה לסטודנטים לחבר בין היכולות הטכניות והעסקיות שלהם לתחום שהם באמת אוהבים, ובמקביל לקחת חלק בצמיחה של אקוסיסטם הספורט-טק והוולנס הישראלי, שכבר היום מייצר טכנולוגיות וחברות בעלות השפעה גלובלית.' },
+        alon:   { name:'אלון מרום',     role:'מנהל קהילה', bio:'' },
+        maya:   { name:'מאיה פרשקר',   role:'מנהלת סושיאל ותוכן', bio:'סטודנטית שנה ג׳ לניהול עסקים ודאטה באוניברסיטת רייכמן. נלהבת מספורט, טכנולוגיה ובניית קהילות שיוצרות השפעה אמיתית. אחראית על נוכחות המועדון ברשתות ועל התוכן שלו.' },
+        mia:    { name:'מיה נדל',       role:'מנהלת שיווק ופרויקטים', bio:'סטודנטית שנה ג׳ לפסיכולוגיה ומנהל עסקים באוניברסיטת רייכמן, בת 25 מתל אביב. רקדנית מגיל צעיר, ובמהלך השירות הצבאי הוסמכה כמאמנת כושר ופילאטיס — מקצוע שהפך עבורה לדרך להשפיע על אנשים דרך תנועה. מאמינה שעולם הכושר והוולנס נמצא בעיצומה של מהפכה, והחיבור בין ספורט, טכנולוגיה וחדשנות הוא שהוביל אותה לספורט-טק. מטרתה במועדון היא לפתוח לסטודנטים דלת לתחום, ולחשוף אותם לאנשים, לרעיונות ולחברות שמעצבים אותו.' },
+      },
     }
   };
 
-  /* ── VIEWPORT HEIGHT LOCK (iOS Safari fix) ── */
-  function lockVh() {
-    document.documentElement.style.setProperty('--vh', window.innerHeight + 'px');
-    document.querySelector('.stage').style.height = window.innerHeight + 'px';
-  }
-  lockVh();
-  window.addEventListener('resize', lockVh);
+  const COMPANIES = {
+    wsc:         { logo:'logo_wsc.png',         url:'https://wsc-sports.com',           speaker:'Itai Kaplan — Director of Product Management GenAI',
+                   video:'סרטונים/wsc.mov' },
+    scores365:   { logo:'logo_365scores.png',   url:'https://www.365scores.com',        speaker:'Eidan Luzki — Product Marketing &amp; Brand Manager',
+                   video:'סרטונים/365scores.mov' },
+    pixellot:    { logo:'logo_pixellot.png',    url:'https://www.pixellot.tv',          speaker:'Gal Oz — CTO &amp; Co-Founder',
+                   video:'סרטונים/pixellot 2.mov' },
+    playermaker: { logo:'logo_playermaker.png', url:'https://www.playermaker.com',      speaker:'Guy Aharon — CEO &amp; Co-Founder',
+                   video:'סרטונים/playermaker.mov' },
+    liveu:       { logo:'logo_liveu.png',       url:'https://www.liveu.tv',             speaker:'Ronen Artman — VP Marketing',
+                   video:'סרטונים/liveu.mov' },
+    welltech:    { logo:'logo_welltech.png',    url:'https://www.welltechventures.com', speaker:'Amir Alroi — Co-Founder',
+                   video:'סרטונים/welltech.mov' },
+    reflect:     { logo:'logo_reflect.png',     url:'https://www.meetreflect.com',      speaker:'Noga Sapir — Founder &amp; CEO',
+                   video:'סרטונים/reflect.mov' },
+    colosseum:   { logo:'logo_colosseum.png',   url:'https://www.colosseumsport.com',   speaker:'Oran Simanian — Founder &amp; CEO',
+                   video:'סרטונים/colosseum.mov' },
+    blazepod:    { logo:'logo_blazepod.png',    url:'https://www.blazepod.com',         speaker:'Yaron Shrim — Blazepod Israel &amp; BD<br>Simon Jacobs — Head of Education &amp; Professional Development',
+                   video:'סרטונים/blazepod.mov' },
+    playsight:   { logo:'logo_playsight.png',   url:'https://www.playsight.com',        speaker:'Chen Shachar — Co-Founder &amp; CEO',
+                   video:'סרטונים/playsight.mov' },
+    onescrin:    { logo:'logo_onescrin.png',    url:'https://www.onescrin.com',         speaker:'Dror Briger — CRO &amp; Founding Team',
+                   video:'סרטונים/onescrin.mov' },
+    arbox:       { logo:'logo_arbox.png',       url:'https://www.arbox.co.il',          speaker:'Ron Lev — Co-Founder &amp; COO<br>Omer Shiloni — VP Growth',
+                   video:'סרטונים/arbox.mov' },
+    binenfit:    { logo:'logo_binenfit.png',   url:'https://binenfit.co.il',           speaker:'Liran Binenfeld',
+                   video:'סרטונים/binenfit.mov' },
+    easycoach:   { logo:'logo_easycoach.svg',  url:'https://www.easycoach.club',       speaker:'Gabi Barzilay',
+                   video:'סרטונים/easycoach.mov' },
+    ibrain:      { logo:'logo_ibrain.svg',     url:'https://www.i-brain.tech',         speaker:'Yoav Zamir',
+                   video:'סרטונים/ibrain.mov' },
+  };
 
-  let currentLang = 'en';
+  const MEMBERS = {
+    yoad:   { photo:'IMG_3706 2.PNG',   linkedin:'https://www.linkedin.com/in/yoad-yankowitz/',           photoBg:'' },
+    maya:   { photo:'maya_grey.png',   linkedin:'https://www.linkedin.com/in/maya-prashker-a90a5138a/',   photoBg:'#c0c4c4' },
+    yarden: { photo:'yarden_grey.png', linkedin:'https://www.linkedin.com/in/yardensafran/',              photoBg:'#c0c4c4' },
+    alon:   { photo:'alon_grey.png',   linkedin:'https://www.linkedin.com/in/alon-marom-a0b685343/',      photoBg:'#c0c4c4' },
+    mia:    { photo:'mia_grey.png',    linkedin:'https://www.linkedin.com/in/mia-nadel/',                 photoBg:'#c0c4c4' },
+  };
+
+  let _openType = null, _openId = null, currentLang = 'en';
+
+  function openModal(type, id) {
+    _openType = type; _openId = id;
+    document.getElementById('modalContent').innerHTML = renderModal(type, id);
+    document.getElementById('modalOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    const v = document.querySelector('.mc-video');
+    if (v) v.pause();
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+    _openType = null; _openId = null;
+  }
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('modalOverlay')) closeModal();
+  }
+
+  function renderModal(type, id) {
+    const t = T[currentLang];
+    if (type === 'co') {
+      const co = COMPANIES[id], ct = t.co[id];
+      const videoHtml = co.video
+        ? `<div><p class="mc-label">${t.modal_session}</p>
+           <video class="mc-video" src="${co.video}" autoplay muted playsinline controls></video></div>`
+        : '';
+      return `<div class="mc-header" style="justify-content:center;">
+        <div class="mc-logo" style="height:56px;"><img src="${co.logo}" alt="${ct.name}" style="max-height:52px;max-width:160px;"></div>
+      </div>
+      <div class="mc-body">
+        <div><p class="mc-label">${t.modal_speaker}</p><p class="mc-speaker">${co.speaker}</p></div>
+        <p class="mc-desc">${ct.desc}</p>
+        ${videoHtml}
+        <a href="${co.url}" target="_blank" rel="noopener" class="mc-btn">${t.modal_visit} →</a>
+      </div>`;
+    }
+    if (type === 'member') {
+      const m = MEMBERS[id], mt = t.members[id];
+      const bg = m.photoBg ? `style="background:${m.photoBg};"` : '';
+      return `<div class="mm-top">
+        <div class="mm-avatar" ${bg}><img src="${m.photo}" alt="${mt.name}"></div>
+        <div class="mm-name">${mt.name}</div>
+        <div class="mm-role">${mt.role}</div>
+      </div>
+      <div class="mm-body">
+        ${mt.bio ? `<p class="mm-bio">${mt.bio}</p>` : ''}
+        <a href="${m.linkedin}" target="_blank" rel="noopener" class="mm-btn">${t.modal_linkedin} →</a>
+      </div>`;
+    }
+    return '';
+  }
+
+  function toggleExpand(row) {
+    const was = row.classList.contains('expanded');
+    document.querySelectorAll('.hl-row.expanded').forEach(r => r.classList.remove('expanded'));
+    if (!was) row.classList.add('expanded');
+  }
 
   function setLang(lang) {
     currentLang = lang;
     const t = T[lang];
-
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      if (t[key] !== undefined) el.innerHTML = t[key];
+      const k = el.getAttribute('data-i18n');
+      if (t[k] !== undefined) el.innerHTML = t[k];
     });
-
     document.documentElement.lang = lang;
-
-    // Hebrew: font override on s8 elements that have inline font-family
-    const s8h1 = document.querySelector('#s8 h1');
-    if (s8h1) {
-      s8h1.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fd)';
-      s8h1.style.letterSpacing = lang === 'he' ? '0' : '3px';
-    }
-    const s8club = document.querySelector('#s8 [data-i18n="s8_club"]');
-    if (s8club) {
-      s8club.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fc)';
-      s8club.style.letterSpacing = lang === 'he' ? '2px' : '9px';
-      s8club.style.textTransform = lang === 'he' ? 'none' : 'uppercase';
-    }
-    const s8uni = document.querySelector('#s8 [data-i18n="s8_uni"]');
-    if (s8uni) {
-      s8uni.style.fontFamily = lang === 'he' ? 'var(--fh)' : 'var(--fc)';
-      s8uni.style.letterSpacing = lang === 'he' ? '2px' : '6px';
-      s8uni.style.textTransform = lang === 'he' ? 'none' : 'uppercase';
-    }
-
     document.getElementById('btnEN').classList.toggle('active', lang === 'en');
     document.getElementById('btnHE').classList.toggle('active', lang === 'he');
+    if (_openType) document.getElementById('modalContent').innerHTML = renderModal(_openType, _openId);
   }
 
-  /* ── SLIDES ── */
-  const slides = Array.from(document.querySelectorAll('.slide'));
-  const dotsEl = document.getElementById('navDots');
-  const counterEl = document.getElementById('counter');
-  const progressEl = document.getElementById('progress');
-  let cur = 0;
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  slides.forEach((_, i) => {
-    const d = document.createElement('button');
-    d.className = 'dot' + (i === 0 ? ' active' : '');
-    d.addEventListener('click', () => go(i));
-    dotsEl.appendChild(d);
-  });
-  const dots = Array.from(document.querySelectorAll('.dot'));
-
-  function refresh() {
-    counterEl.textContent =
-      String(cur + 1).padStart(2,'0') + ' / ' + String(slides.length).padStart(2,'0');
-    progressEl.style.width = ((cur + 1) / slides.length * 100) + '%';
-  }
-
-  function go(idx) {
-    slides[cur].classList.remove('active');
-    dots[cur].classList.remove('active');
-    cur = (idx + slides.length) % slides.length;
-    // Reset scroll position on both outgoing and incoming slide
-    slides.forEach(s => { s.scrollTop = 0; });
-    slides[cur].querySelectorAll('.anim').forEach(el => {
-      el.style.animation = 'none';
-      void el.offsetHeight;
-      el.style.animation = '';
+  /* Active nav on scroll */
+  const secEls = document.querySelectorAll('section[id]');
+  const navAs = document.querySelectorAll('.site-nav a');
+  new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting)
+        navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
     });
-    slides[cur].classList.add('active');
-    dots[cur].classList.add('active');
-    refresh();
-  }
+  }, { threshold: 0.35 }).observe && secEls.forEach(s =>
+    new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if (en.isIntersecting)
+          navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id));
+      });
+    }, { threshold: 0.35 }).observe(s)
+  );
 
-  document.getElementById('btnNext').addEventListener('click', () => go(cur + 1));
-  document.getElementById('btnPrev').addEventListener('click', () => go(cur - 1));
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(cur + 1);
-    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp') go(cur - 1);
-  });
-  let tx = 0;
-  document.addEventListener('touchstart', e => { tx = e.touches[0].clientX; });
-  document.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - tx;
-    if (Math.abs(dx) > 50) go(cur + (dx < 0 ? 1 : -1));
-  });
-
-  refresh();
+  setLang('en');
 </script>
 </body>
 </html>

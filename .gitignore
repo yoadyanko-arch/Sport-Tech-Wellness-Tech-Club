@@ -1,0 +1,16 @@
+.vercel
+.DS_Store
+**/.DS_Store
+
+# Heavy media — uploaded straight to Vercel by `vercel --prod`, too large for the repo
+סרטונים/
+חברות/
+
+# Working files
+test_*.jpg
+*_white.png
+*_nobg.png
+_shot*.html
+_m*.html
+_p_*.html
+_t_*.html
